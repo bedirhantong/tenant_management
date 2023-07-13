@@ -42,15 +42,15 @@ class Tennants extends StatelessWidget {
                             icon: const Icon(Icons.add),
                             label: Text(
                               'Create'.toUpperCase(),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 12),
                             ),
                             style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.green),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10.0,
                           ),
                           TextButton.icon(
@@ -71,7 +71,7 @@ class Tennants extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 50.0),
+                const SizedBox(height: 50.0),
               ],
             ),
           ),
