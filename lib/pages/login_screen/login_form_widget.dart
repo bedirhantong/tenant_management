@@ -39,7 +39,7 @@ class _LoginFormState extends State<LoginForm> {
                 labelText: "E-mail",
                 hintText: "E-mail",
                 labelStyle: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.black38,
                 ),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.green),

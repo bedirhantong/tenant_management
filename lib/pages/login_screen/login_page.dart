@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
                   width: 400.0,
                   padding: const EdgeInsets.all(20.0),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
+                    border: Border.all(color: Colors.black12),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
