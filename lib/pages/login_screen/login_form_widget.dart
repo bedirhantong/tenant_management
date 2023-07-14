@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tenant_manager/pages/login_screen/login_page.dart';
 
 import '../manage_tenants/tenants.dart';
 
@@ -118,6 +119,10 @@ class _LoginFormState extends State<LoginForm> {
                 TextButton.icon(
                   onPressed: () {
                     // Implement forgot password functionality
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()));
                   },
                   icon: const Icon(Icons.lock_reset_outlined),
                   label: Text(

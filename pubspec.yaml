@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.5
   anim_search_bar: ^2.0.3
+  responsive_table: ^0.2.0+2
 
 dev_dependencies:
   flutter_test:

@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:tenant_manager/service/server_info.dart';
 import 'dart:convert';
 
-import '../service_model/base_model.dart';
-import '../service_model/tenant_models/tenant_model.dart';
+import '../model/service_model/base_model.dart';
+import '../model/service_model/tenant_models/tenant_model.dart';
 
 class TenantService {
   static Future<BaseModel<List<TenantModel>>> getChargePoints(

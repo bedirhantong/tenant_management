@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black12),
                   ),
-                  child: Column(
+                  child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image(

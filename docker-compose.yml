@@ -1,8 +1,8 @@
 version: '3.8'
-name: maviarge-tenant-dashboard-backend-setup
+name: maviarge-tenant-demo-backend-setup
 services:
   dotnet-webapi:
-    image: iammukeshm/dotnet-webapi:latest
+    image: baranacikgoz/maviarge-tenant-demo-amd64
     container_name: dotnet-webapi
     networks:
       - maviarge
@@ -12,8 +12,8 @@ services:
       - ASPNETCORE_HTTPS_PORT=5100
       - ASPNETCORE_Kestrel__Certificates__Default__Password=password!
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/cert.pfx
-      - DatabaseSettings__ConnectionString=Server=postgres;Port=5433;Database=fshdb;User Id=postgres;Password=postgres
-      - HangfireSettings__Storage__ConnectionString=Server=postgres;Port=5433;Database=fshdb;User Id=postgres;Password=postgres
+      - DatabaseSettings__ConnectionString=Server=postgres;Port=5432;Database=postgres;User Id=postgres;Password=postgres
+      - HangfireSettings__Storage__ConnectionString=Server=postgres;Port=5432;Database=postgres;User Id=postgres;Password=postgres
       - DatabaseSettings__DBProvider=postgresql
       - HangfireSettings__Storage__StorageProvider=postgresql
     volumes:
@@ -32,9 +32,9 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - PGPORT=5433
+      - PGPORT=5432
     ports:
-      - 5433:5433
+      - 12998:5432
     volumes:
       - postgres-data:/data/db
     healthcheck:
