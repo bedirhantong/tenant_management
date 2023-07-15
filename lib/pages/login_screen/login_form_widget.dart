@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tenant_manager/pages/login_screen/login_page.dart';
 
+import '../../model/service_model/base_model.dart';
+import '../../model/service_model/token_models/authenticate_model.dart';
+import '../../service/tokens_service.dart';
 import '../manage_tenants/tenants.dart';
 
 class LoginForm extends StatefulWidget {
@@ -12,6 +14,9 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   bool _isPasswordVisible = false;
+  String email = "admin@root.com";
+  String password = r"123Pa$$word!";
+  //Başına r harfi koymamın nedeni $ işaretini kullanabilmek için.
 
   Widget _buildSuffixIcon() {
     return IconButton(
@@ -34,7 +39,9 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // email
             TextFormField(
+              initialValue: email,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.person_outline_outlined),
                 labelText: "E-mail",
@@ -49,11 +56,18 @@ class _LoginFormState extends State<LoginForm> {
                   borderSide: BorderSide(color: Colors.green),
                 ),
               ),
+              onChanged: (value) {
+                setState(() {
+                  email = value;
+                });
+              },
             ),
             const SizedBox(
               height: 20,
             ),
+            // password
             TextFormField(
+              initialValue: password,
               obscureText: !_isPasswordVisible,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.fingerprint),
@@ -70,10 +84,16 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 suffixIcon: _buildSuffixIcon(),
               ),
+              onChanged: (value) {
+                setState(() {
+                  password = value;
+                });
+              },
             ),
             const SizedBox(
               height: 20,
             ),
+            // Tenant
             TextFormField(
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.apartment_outlined),
@@ -103,6 +123,7 @@ class _LoginFormState extends State<LoginForm> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Register?
                 TextButton.icon(
                   onPressed: () {
                     // Implement register functionality
@@ -110,24 +131,21 @@ class _LoginFormState extends State<LoginForm> {
                   icon: const Icon(Icons.app_registration_rounded),
                   label: Text(
                     'Register?'.toUpperCase(),
-                    style: TextStyle(color: Colors.black, fontSize: 12),
+                    style: const TextStyle(color: Colors.black, fontSize: 12),
                   ),
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all(Colors.black),
                   ),
                 ),
+                // Forgot Password
                 TextButton.icon(
                   onPressed: () {
                     // Implement forgot password functionality
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()));
                   },
                   icon: const Icon(Icons.lock_reset_outlined),
                   label: Text(
                     'Forgot Password?'.toUpperCase(),
-                    style: TextStyle(color: Colors.black, fontSize: 12),
+                    style: const TextStyle(color: Colors.black, fontSize: 12),
                   ),
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all(Colors.black),
@@ -142,34 +160,34 @@ class _LoginFormState extends State<LoginForm> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Tennants(),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                  ),
+                  onPressed: () {
+                    showLogIn(TokensService.getToken(email, password));
+                  },
+                  child: const Align(
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.login,
+                          color: Colors.white,
+                        ),
+                        SizedBox(width: 8.0),
+                        Text(
+                          "LOGIN",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.login, color: Colors.white),
-                    const SizedBox(width: 8.0),
-                    Text(
-                      'Sign in'.toUpperCase(),
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
+                  )), // Sign in
             ),
             const SizedBox(
               height: 10,
             ),
+            // Fill administrator credentials
             TextButton.icon(
               onPressed: () {
                 // Implement register functionality
@@ -177,7 +195,7 @@ class _LoginFormState extends State<LoginForm> {
               icon: const Icon(Icons.crop_free),
               label: Text(
                 'Fill administrator credentials?'.toUpperCase(),
-                style: TextStyle(color: Colors.black, fontSize: 12),
+                style: const TextStyle(color: Colors.black, fontSize: 12),
               ),
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all(Colors.black),
@@ -186,6 +204,66 @@ class _LoginFormState extends State<LoginForm> {
           ],
         ),
       ),
+    );
+  }
+
+  void showLogIn(Future<BaseModel<AuthenticateModel>> logInFuture) {
+    showDialog(
+      context: context,
+      builder: (context) => FutureBuilder<BaseModel<AuthenticateModel>>(
+          future: logInFuture,
+          builder:
+              ((context, AsyncSnapshot<BaseModel<AuthenticateModel>> snapshot) {
+            if (snapshot.hasData && snapshot.data!.suc) {
+              ///Sunucuya 200 ile başarılı istek atıldı
+              return SimpleDialog(
+                title: const Text("Oturum açma başarılı"),
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Tenants()),
+                        (route) => false,
+                      );
+                    },
+                    child: const Text("Tamam"),
+                  ),
+                ],
+              );
+            } else if (snapshot.hasData && !snapshot.data!.suc) {
+              ///Sunucuya 400 veya başka kod ile ile başarısız istek atıldı
+              return SimpleDialog(
+                title: const Text("Error"),
+                children: [
+                  Text(snapshot.data!.exception.toString()),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Tamam"),
+                  ),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return SimpleDialog(
+                title: const Text("Error"),
+                children: [
+                  Text(snapshot.error.toString()),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Tamam"),
+                  ),
+                ],
+              );
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          })),
     );
   }
 }

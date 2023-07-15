@@ -8,13 +8,18 @@ import '../model/service_model/base_model.dart';
 import '../model/service_model/tenant_models/tenant_model.dart';
 
 class TenantService {
-  static Future<BaseModel<List<TenantModel>>> getChargePoints(
+  //servislerde bu aşamada http url kullanılsın.
+  //Bu güvensiz bir protokoldür. Bu yüzden http kullanılmamalıdır.
+  //Ancak kendi bilgisayarımıza bağlanmamızdan bu durum önem arz etmez.
+
+  //Base Model içinde bir liste döndürür. Bu liste içinde de Tenant yani şirketler bulunmaktadır.
+  static Future<BaseModel<List<TenantModel>>> getTenants(
     String token,
   ) async {
     try {
-      var url = Uri.https(
+      var url = Uri.http(
         SI.serverName,
-        '${SI.path}/${SI.apiN}/${SI.tenants}',
+        '${SI.apiN}/${SI.tenants}',
       );
       final http.Response response = await http
           .get(
@@ -22,6 +27,7 @@ class TenantService {
             headers: SI.authHeader(token),
           )
           .timeout(const Duration(seconds: 60));
+
       switch (response.statusCode) {
         case 200:
           return BaseModel<List<TenantModel>>.fromJson(
