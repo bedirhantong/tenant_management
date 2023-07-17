@@ -56,10 +56,22 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "dropdown_button2",
+      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/dropdown_button2-2.3.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "file",
+      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/file-7.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "flutter",
@@ -128,6 +140,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "platform",
+      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/platform-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "printx",
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/printx-0.0.1",
       "packageUri": "lib/",
@@ -138,6 +156,12 @@
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/responsive_table-0.2.0+2",
       "packageUri": "lib/",
       "languageVersion": "2.15"
+    },
+    {
+      "name": "scalable_data_table",
+      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/scalable_data_table-0.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "sky_engine",
@@ -200,7 +224,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-07-15T20:02:13.760138Z",
+  "generated": "2023-07-17T08:40:50.914038Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }

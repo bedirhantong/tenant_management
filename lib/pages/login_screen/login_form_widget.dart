@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tenant_manager/consts/token_class.dart';
 
 import '../../model/service_model/base_model.dart';
 import '../../model/service_model/token_models/authenticate_model.dart';
@@ -207,7 +208,7 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  void showLogIn(Future<BaseModel<AuthenticateModel>> logInFuture) {
+  void showLogIn(Future<BaseModel<AuthenticateModel>> logInFuture) async {
     showDialog(
       context: context,
       builder: (context) => FutureBuilder<BaseModel<AuthenticateModel>>(
@@ -221,6 +222,9 @@ class _LoginFormState extends State<LoginForm> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
+                      setState(() {
+                        TokenClass.me = snapshot.data!.data!;
+                      });
                       Navigator.pop(context);
                       Navigator.pushAndRemoveUntil(
                         context,

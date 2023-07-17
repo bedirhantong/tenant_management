@@ -27,6 +27,8 @@ class TokensService {
             }),
           )
           .timeout(const Duration(seconds: 60));
+      print("response.statusCode : ${response.statusCode}");
+      // print("response.body : ${response.body}");
       switch (response.statusCode) {
         case 200:
           return BaseModel<AuthenticateModel>.fromJson(
@@ -39,6 +41,7 @@ class TokensService {
     } on TimeoutException {
       throw Exception("Timeout... ");
     } catch (e) {
+      print("tokens_service e.toString() : ${e.toString()}");
       throw Exception(e.toString());
     }
   }
@@ -62,6 +65,7 @@ class TokensService {
             }),
           )
           .timeout(const Duration(seconds: 60));
+
       switch (response.statusCode) {
         case 200:
           return BaseModel<AuthenticateModel>.fromJson(

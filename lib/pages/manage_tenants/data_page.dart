@@ -1,6 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
+
 import 'package:responsive_table/responsive_table.dart';
 
 class DataPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class _DataPageState extends State<DataPage> {
   late List<DatatableHeader> _headers;
 
   final List<int> _perPages = [10, 20, 50, 100];
-  int _total = 100;
+  int _total = 0;
   int? _currentPerPage = 10;
   List<bool>? _expanded;
   String? _searchKey = "id";
@@ -31,56 +32,54 @@ class _DataPageState extends State<DataPage> {
   bool _sortAscending = true;
   bool _isLoading = true;
   final bool _showSelect = true;
-  var random = Random();
-
-  List<Map<String, dynamic>> _generateData({int n = 10}) {
-    final List source = List.filled(n, Random.secure());
-    List<Map<String, dynamic>> temps = [];
-    var i = 1;
-    print(i);
-    // ignore: unused_local_variable
-    for (var data in source) {
-      temps.add({
-        "id": i,
-        "name": "$i",
-        "email": "$i@gmail.com",
-        "upto": "$i March 2020",
-        "active": i * 10.00,
-        "actions": "active",
-      });
-      i++;
-    }
-    return temps;
-  }
 
   _initializeData() async {
     _mockPullData();
   }
 
   _mockPullData() async {
-    _expanded = List.generate(_currentPerPage!, (index) => false);
-
     setState(() => _isLoading = true);
-    Future.delayed(const Duration(seconds: 2)).then((value) {
-      _sourceOriginal.clear();
-      _sourceOriginal.addAll(_generateData(n: random.nextInt(100)));
-      _sourceFiltered = _sourceOriginal;
-      _total = _sourceFiltered.length;
-      _source = _sourceFiltered.getRange(0, _currentPerPage!).toList();
+
+    try {
+      var url =
+          Uri.https('www.googleapis.com', '/books/v1/volumes', {'q': '{http}'});
+      // Make a request to the database API to fetch the data
+      var response = await http.get(Uri.parse("your_database_api_endpoint"));
+
+      if (response.statusCode == 200) {
+        var jsonResponse = convert.jsonDecode(response.body);
+        var data = jsonResponse["data"];
+
+        _sourceOriginal.clear();
+        _sourceOriginal.addAll(data);
+        _sourceFiltered = _sourceOriginal;
+        _total = _sourceFiltered.length;
+
+        _resetData();
+      } else {
+        throw Exception("Failed to fetch data from the database.");
+      }
+    } catch (e) {
+      throw Exception("Failed to fetch data: $e");
+    } finally {
       setState(() => _isLoading = false);
-    });
+    }
   }
 
   _resetData({start = 0}) async {
     setState(() => _isLoading = true);
-    var expandedLen =
-        _total - start < _currentPerPage! ? _total - start : _currentPerPage;
-    Future.delayed(const Duration(seconds: 0)).then((value) {
+
+    try {
+      var expandedLen =
+          _total - start < _currentPerPage! ? _total - start : _currentPerPage;
       _expanded = List.generate(expandedLen as int, (index) => false);
       _source.clear();
       _source = _sourceFiltered.getRange(start, start + expandedLen).toList();
-      setState(() => _isLoading = false);
-    });
+    } catch (e) {
+      print(e);
+    }
+
+    setState(() => _isLoading = false);
   }
 
   _filterData(value) {
@@ -105,6 +104,7 @@ class _DataPageState extends State<DataPage> {
     } catch (e) {
       print(e);
     }
+
     setState(() => _isLoading = false);
   }
 
@@ -115,43 +115,49 @@ class _DataPageState extends State<DataPage> {
     /// set headers
     _headers = [
       DatatableHeader(
-          text: "ID",
-          value: "id",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.center),
+        text: "ID",
+        value: "id",
+        show: true,
+        sortable: true,
+        textAlign: TextAlign.center,
+      ),
       DatatableHeader(
-          text: "Name",
-          value: "name",
-          show: true,
-          flex: 2,
-          sortable: true,
-          editable: true,
-          textAlign: TextAlign.center),
+        text: "Name",
+        value: "name",
+        show: true,
+        flex: 2,
+        sortable: true,
+        editable: true,
+        textAlign: TextAlign.center,
+      ),
       DatatableHeader(
-          text: "Admin Email",
-          value: "email",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.center),
+        text: "Admin Email",
+        value: "email",
+        show: true,
+        sortable: true,
+        textAlign: TextAlign.center,
+      ),
       DatatableHeader(
-          text: "Valid Upto",
-          value: "upto",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.center),
+        text: "Valid Upto",
+        value: "upto",
+        show: true,
+        sortable: true,
+        textAlign: TextAlign.center,
+      ),
       DatatableHeader(
-          text: "Active",
-          value: "active",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.center),
+        text: "Active",
+        value: "active",
+        show: true,
+        sortable: true,
+        textAlign: TextAlign.center,
+      ),
       DatatableHeader(
-          text: "Actions",
-          value: "actions",
-          show: true,
-          sortable: true,
-          textAlign: TextAlign.center),
+        text: "Actions",
+        value: "actions",
+        show: true,
+        sortable: false,
+        textAlign: TextAlign.center,
+      ),
     ];
 
     _initializeData();
@@ -176,7 +182,7 @@ class _DataPageState extends State<DataPage> {
         clipBehavior: Clip.none,
         child: ResponsiveDatatable(
           title: TextButton.icon(
-            onPressed: () => {},
+            onPressed: () {},
             icon: const Icon(Icons.add),
             label: const Text("CREATE"),
           ),
@@ -184,32 +190,38 @@ class _DataPageState extends State<DataPage> {
           actions: [
             if (_isSearch)
               Expanded(
-                  child: TextField(
-                decoration: InputDecoration(
+                child: TextField(
+                  decoration: InputDecoration(
                     hintText:
-                        'Enter search term based on ${_searchKey!.replaceAll(RegExp('[\\W_]+'), ' ').toUpperCase()}',
+                        'Enter search term based on ${_searchKey!.replaceAll(RegExp('[\\W]+'), ' ').toUpperCase()}',
                     prefixIcon: IconButton(
-                        icon: const Icon(Icons.cancel),
-                        onPressed: () {
-                          setState(() {
-                            _isSearch = false;
-                          });
-                          _initializeData();
-                        }),
+                      icon: const Icon(Icons.cancel),
+                      onPressed: () {
+                        setState(() {
+                          _isSearch = false;
+                        });
+                        _initializeData();
+                      },
+                    ),
                     suffixIcon: IconButton(
-                        icon: const Icon(Icons.search), onPressed: () {})),
-                onSubmitted: (value) {
-                  _filterData(value);
-                },
-              )),
+                      icon: const Icon(Icons.search),
+                      onPressed: () {},
+                    ),
+                  ),
+                  onSubmitted: (value) {
+                    _filterData(value);
+                  },
+                ),
+              ),
             if (!_isSearch)
               IconButton(
-                  icon: const Icon(Icons.search),
-                  onPressed: () {
-                    setState(() {
-                      _isSearch = true;
-                    });
-                  })
+                icon: const Icon(Icons.search),
+                onPressed: () {
+                  setState(() {
+                    _isSearch = true;
+                  });
+                },
+              ),
           ],
           headers: _headers,
           source: _source,
@@ -217,9 +229,6 @@ class _DataPageState extends State<DataPage> {
           showSelect: _showSelect,
           autoHeight: false,
           dropContainer: (data) {
-            if (int.tryParse(data['id'].toString())!.isEven) {
-              return const Text("is Even");
-            }
             return _DropDownContainer(data: data);
           },
           onChangedRow: (value, header) {
@@ -230,9 +239,7 @@ class _DataPageState extends State<DataPage> {
             /// print(value);
             /// print(header);
           },
-          onTabRow: (data) {
-            print(data);
-          },
+          onTabRow: (data) {},
           onSort: (value) {
             setState(() => _isLoading = true);
 
@@ -241,10 +248,12 @@ class _DataPageState extends State<DataPage> {
               _sortAscending = !_sortAscending;
               if (_sortAscending) {
                 _sourceFiltered.sort(
-                    (a, b) => b["$_sortColumn"].compareTo(a["$_sortColumn"]));
+                  (a, b) => b["$_sortColumn"].compareTo(a["$_sortColumn"]),
+                );
               } else {
                 _sourceFiltered.sort(
-                    (a, b) => a["$_sortColumn"].compareTo(b["$_sortColumn"]));
+                  (a, b) => a["$_sortColumn"].compareTo(b["$_sortColumn"]),
+                );
               }
               var rangeTop = _currentPerPage! < _sourceFiltered.length
                   ? _currentPerPage!
@@ -274,6 +283,8 @@ class _DataPageState extends State<DataPage> {
               setState(() => _selecteds.clear());
             }
           },
+
+          // sayfa değiştirme
           footers: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -326,7 +337,6 @@ class _DataPageState extends State<DataPage> {
                   ? null
                   : () {
                       var nextSet = _currentPage + _currentPerPage!;
-
                       setState(() {
                         _currentPage = nextSet < _total
                             ? nextSet
@@ -349,21 +359,53 @@ class _DropDownContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = data.entries.map<Widget>((entry) {
-      Widget w = Row(
-        children: [
-          Text(entry.key.toString()),
-          const Spacer(),
-          Text(entry.value.toString()),
-        ],
-      );
-      return w;
-    }).toList();
-
-    return Container(
-      child: Column(
-        children: children,
-      ),
+    return ElevatedButton(
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: const Text("Actions"),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.delete),
+                  title: const Text("Delete"),
+                  onTap: () {
+                    Navigator.pop(context);
+                    // TODO: Implement delete functionality
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.calendar_today),
+                  title: const Text("Change Valid Upto"),
+                  onTap: () {
+                    Navigator.pop(context);
+                    // TODO: Implement change Valid Upto functionality
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.block),
+                  title: const Text("Set Inactive"),
+                  onTap: () {
+                    Navigator.pop(context);
+                    // TODO: Implement set inactive functionality
+                  },
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Close'),
+              ),
+            ],
+          ),
+        );
+      },
+      child: const Text("Actions"),
     );
   }
 }
