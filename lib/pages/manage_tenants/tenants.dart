@@ -408,13 +408,9 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                               TokenClass.me.token.toString(),
                               tenant.id.toString(),
                               selectedDate)
-                          // "${selectedDate.year}-${selectedDate.month}-${selectedDate.day}T${selectedDate.hour}-${selectedDate.minute}-${selectedDate.second}-${selectedDate.millisecond}")
                           .then(
                         (v) {
-                          print(v.statusCode);
                           tenant.validUpto = selectedDate.toIso8601String();
-                          print(tenant.validUpto);
-                          print(selectedDate.toIso8601String());
                         },
                       );
                     }
@@ -424,9 +420,7 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    setState(() {
-                      // burada ekranı yenile
-                    });
+                    setState(() {});
                   },
                   child: const Text('Update the expire date'),
                 ),
@@ -563,7 +557,6 @@ abstract class MenuItems {
                               TokenClass.me.token.toString(), selectedDate)
                           .then(
                         (v) {
-                          print(v.exception);
                           tenant.validUpto = selectedDate.toString();
                         },
                       );
