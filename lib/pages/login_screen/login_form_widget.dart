@@ -218,7 +218,7 @@ class _LoginFormState extends State<LoginForm> {
             if (snapshot.hasData && snapshot.data!.suc) {
               ///Sunucuya 200 ile başarılı istek atıldı
               return SimpleDialog(
-                title: const Text("Oturum açma başarılı"),
+                title: const Text("Successfully Logged in"),
                 children: [
                   ElevatedButton(
                     onPressed: () {
@@ -233,7 +233,7 @@ class _LoginFormState extends State<LoginForm> {
                         (route) => false,
                       );
                     },
-                    child: const Text("Tamam"),
+                    child: const Text("Okay"),
                   ),
                 ],
               );

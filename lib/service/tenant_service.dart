@@ -12,6 +12,43 @@ class TenantService {
   //Bu güvensiz bir protokoldür. Bu yüzden http kullanılmamalıdır.
   //Ancak kendi bilgisayarımıza bağlanmamızdan bu durum önem arz etmez.
 
+  static Future<BaseModel<String>> createTenant(String token, String tenantId,
+      String name, String adminEmail, String issuer) async {
+    try {
+      var url = Uri.http(SI.serverName, '${SI.apiN}/${SI.tenants}');
+
+      final http.Response response = await http
+          .post(
+            url,
+            headers: SI.authHeader(token),
+            body: jsonEncode(<String, dynamic>{
+              "id": tenantId,
+              "name": name,
+              "connectionString": "",
+              "adminEmail": adminEmail,
+              "issuer": issuer
+            }),
+          )
+          .timeout(const Duration(seconds: 60));
+
+      switch (response.statusCode) {
+        case 200:
+          return BaseModel<String>.fromJson(
+            json: {"statusCode": 200},
+            d: response.body,
+          );
+        default:
+          return BaseModel.fromJson(
+            json: json.decode(response.body),
+          );
+      }
+    } on TimeoutException {
+      throw Exception("Timeout... ");
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
   //Base Model içinde bir liste döndürür. Bu liste içinde de Tenant yani şirketler bulunmaktadır.
   static Future<BaseModel<List<TenantModel>>> getTenants(
     String token,
@@ -27,23 +64,88 @@ class TenantService {
             headers: SI.authHeader(token),
           )
           .timeout(const Duration(seconds: 60));
-
       switch (response.statusCode) {
         case 200:
           return BaseModel<List<TenantModel>>.fromJson(
             json: {"statusCode": 200},
             d: List<TenantModel>.from(
-              json.decode(response.body)["data"].map(
+              json.decode(response.body).map(
                     (x) => TenantModel.fromJson(x),
                   ),
             ),
           );
         default:
-          return BaseModel.fromJson(json: json.decode(response.body));
+          return BaseModel.fromJson(
+            json: json.decode(response.body),
+          );
       }
     } on TimeoutException {
       throw Exception("Timeout... ");
     } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  static Future<BaseModel<String>> getTenantsActivation(
+      String tenantId, String token, bool active) async {
+    try {
+      var url = Uri.http(SI.serverName,
+          '${SI.apiN}/${SI.tenants}/$tenantId/${active ? "deactivate" : "activate"}');
+      final http.Response response = await http
+          .post(
+            url,
+            headers: SI.authHeader(token),
+          )
+          .timeout(const Duration(seconds: 60));
+      switch (response.statusCode) {
+        case 200:
+          return BaseModel<String>.fromJson(
+            json: {"statusCode": 200},
+            d: response.body,
+          );
+        default:
+          return BaseModel.fromJson(
+            json: json.decode(response.body),
+          );
+      }
+    } on TimeoutException {
+      throw Exception("Timeout... ");
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  static Future<BaseModel<String>> updateTenantSubscription(
+      String token, String tenantId, DateTime extendedExpiryDate) async {
+    try {
+      var url =
+          Uri.http(SI.serverName, '${SI.apiN}/${SI.tenants}/$tenantId/upgrade');
+      final http.Response response = await http
+          .post(
+            url,
+            headers: SI.authHeader(token),
+            body: jsonEncode(<String, dynamic>{
+              "tenantId": tenantId,
+              "extendedExpiryDate": extendedExpiryDate.toIso8601String(),
+            }),
+          )
+          .timeout(const Duration(seconds: 60));
+      print(response.body);
+      switch (response.statusCode) {
+        case 200:
+          return BaseModel<String>.fromJson(
+            json: {"statusCode": 200},
+            d: response.body,
+          );
+        default:
+          return BaseModel.fromJson(
+            json: json.decode(response.body),
+          );
+      }
+    } on TimeoutException {
+      throw Exception("Timeout... ");
+    } catch (e) {
+      print("tenant service e.toString() : ${e.toString()}");
       throw Exception(e.toString());
     }
   }

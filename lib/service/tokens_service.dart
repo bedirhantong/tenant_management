@@ -27,7 +27,6 @@ class TokensService {
             }),
           )
           .timeout(const Duration(seconds: 60));
-      print("response.statusCode : ${response.statusCode}");
       // print("response.body : ${response.body}");
       switch (response.statusCode) {
         case 200:
@@ -41,7 +40,6 @@ class TokensService {
     } on TimeoutException {
       throw Exception("Timeout... ");
     } catch (e) {
-      print("tokens_service e.toString() : ${e.toString()}");
       throw Exception(e.toString());
     }
   }

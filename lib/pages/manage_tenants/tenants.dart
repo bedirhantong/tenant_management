@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tenant_manager/model/service_model/base_model.dart';
 import 'package:tenant_manager/model/service_model/tenant_models/tenant_model.dart';
 import 'package:tenant_manager/service/tenant_service.dart';
@@ -35,7 +36,7 @@ class _TenantsState extends State<Tenants> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.green.shade500,
         title: const Text(
           "Tenants ",
           style: TextStyle(color: Colors.white),
@@ -44,16 +45,134 @@ class _TenantsState extends State<Tenants> {
         actions: [
           ElevatedButton(
             onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('Add new corporation'),
+                    content: Form(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // email
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.person_outline_outlined),
+                                labelText: "Id",
+                                hintText: "Id",
+                                labelStyle: TextStyle(
+                                  color: Colors.black38,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
+                                ),
+                              ),
+                              onChanged: (value) {
+                                setState(() {});
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.person),
+                                labelText: "Corporation Name",
+                                hintText: "Corporation Name",
+                                labelStyle: TextStyle(
+                                  color: Colors.black38,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
+                                ),
+                              ),
+                              onChanged: (value) {
+                                setState(() {});
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.email_outlined),
+                                labelText: "Admin e-mail",
+                                hintText: "Admin e-mail",
+                                labelStyle: TextStyle(
+                                  color: Colors.black38,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
+                                ),
+                              ),
+                              onChanged: (value) {
+                                setState(() {});
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                prefixIcon:
+                                    Icon(Icons.settings_input_svideo_sharp),
+                                labelText: "Issuer",
+                                hintText: "Issuer",
+                                labelStyle: TextStyle(
+                                  color: Colors.black38,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
+                                ),
+                              ),
+                              onChanged: (value) {
+                                setState(() {});
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Add'),
+                      ),
+                    ],
+                    icon: const Icon(Icons.person_add_alt),
+                  );
+                },
+              );
               setState(() {
                 // BURADA yeni tenant oluşturacaksın
               });
             },
             child: const Text(
-              'CREATE',
+              'New Corporation',
               style: TextStyle(color: Colors.black),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20.0,
           ),
           ElevatedButton(
@@ -63,7 +182,7 @@ class _TenantsState extends State<Tenants> {
               });
             },
             child: const Text(
-              'Refresh',
+              'Refresh Page',
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -107,12 +226,21 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
               itemBuilder: (context, index) {
                 final tenant = tenantList[index];
                 return DataTable(
-                  columns: const <DataColumn>[
+                  border: const TableBorder(
+                    horizontalInside:
+                        BorderSide(color: Colors.red, style: BorderStyle.solid),
+                    left:
+                        BorderSide(color: Colors.red, style: BorderStyle.solid),
+                  ),
+                  showBottomBorder: true,
+                  sortAscending: true,
+                  columns: <DataColumn>[
                     DataColumn(
                       label: Expanded(
                         child: Text(
                           'Id',
-                          style: TextStyle(fontStyle: FontStyle.italic),
+                          style: GoogleFonts.robotoMono(
+                              textStyle: Theme.of(context).textTheme.bodySmall),
                         ),
                       ),
                     ),
@@ -120,7 +248,8 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                       label: Expanded(
                         child: Text(
                           'Name',
-                          style: TextStyle(fontStyle: FontStyle.italic),
+                          style: GoogleFonts.robotoMono(
+                              textStyle: Theme.of(context).textTheme.bodySmall),
                         ),
                       ),
                     ),
@@ -128,7 +257,8 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                       label: Expanded(
                         child: Text(
                           'Admin Email',
-                          style: TextStyle(fontStyle: FontStyle.italic),
+                          style: GoogleFonts.robotoMono(
+                              textStyle: Theme.of(context).textTheme.bodySmall),
                         ),
                       ),
                     ),
@@ -136,7 +266,8 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                       label: Expanded(
                         child: Text(
                           'Valid Upto',
-                          style: TextStyle(fontStyle: FontStyle.italic),
+                          style: GoogleFonts.robotoMono(
+                              textStyle: Theme.of(context).textTheme.bodySmall),
                         ),
                       ),
                     ),
@@ -144,7 +275,8 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                       label: Expanded(
                         child: Text(
                           'Active',
-                          style: TextStyle(fontStyle: FontStyle.italic),
+                          style: GoogleFonts.robotoMono(
+                              textStyle: Theme.of(context).textTheme.bodySmall),
                         ),
                       ),
                     ),
@@ -152,7 +284,8 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                       label: Expanded(
                         child: Text(
                           'Actions',
-                          style: TextStyle(fontStyle: FontStyle.italic),
+                          style: GoogleFonts.robotoMono(
+                              textStyle: Theme.of(context).textTheme.bodySmall),
                         ),
                       ),
                     ),
@@ -163,10 +296,22 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                         DataCell(
                           Text(tenant.id ?? ''),
                         ),
-                        DataCell(Text(tenant.name ?? '')),
-                        DataCell(Text(tenant.adminEmail ?? '')),
-                        DataCell(Text(tenant.validUpto ?? '')),
-                        DataCell(Text(tenant.isActive.toString() ?? '')),
+                        DataCell(
+                          Text(tenant.name ?? ''),
+                        ),
+                        DataCell(
+                          Text(tenant.adminEmail ?? ''),
+                        ),
+                        DataCell(
+                          TextButton(
+                              child: Text(tenant.validUpto ?? ''),
+                              onPressed: () {}),
+                        ),
+                        DataCell(
+                          TextButton(
+                              child: Text(tenant.isActive.toString()),
+                              onPressed: () {}),
+                        ),
                         DataCell(
                           DropdownButtonHideUnderline(
                             child: DropdownButtonHideUnderline(
@@ -174,7 +319,7 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                                 customButton: const Icon(
                                   Icons.list,
                                   size: 46,
-                                  color: Colors.blueGrey,
+                                  color: Colors.green,
                                 ),
                                 items: [
                                   ...MenuItems.firstItems.map(
@@ -196,12 +341,12 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                                   onChanged(value! as MenuItem, tenant);
                                 },
                                 dropdownStyleData: DropdownStyleData(
-                                  width: 160,
+                                  width: 250,
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 6),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.green.shade400,
                                   ),
                                   offset: const Offset(0, 8),
                                 ),
@@ -247,17 +392,46 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Bilgi Kutucuğu Başlığı'),
-              content: Text('Bilgi Kutucuğu İçeriği'),
+              title: const Text('Upgrade the subscription'),
               actions: [
+                ElevatedButton(
+                  onPressed: () async {
+                    DateTime dateNow = DateTime.now();
+                    final DateTime? selectedDate = await showDatePicker(
+                      context: context,
+                      initialDate: dateNow,
+                      firstDate: dateNow,
+                      lastDate: DateTime(2030),
+                    );
+                    if (selectedDate != null) {
+                      TenantService.updateTenantSubscription(
+                              TokenClass.me.token.toString(),
+                              tenant.id.toString(),
+                              selectedDate)
+                          // "${selectedDate.year}-${selectedDate.month}-${selectedDate.day}T${selectedDate.hour}-${selectedDate.minute}-${selectedDate.second}-${selectedDate.millisecond}")
+                          .then(
+                        (v) {
+                          print(v.statusCode);
+                          tenant.validUpto = selectedDate.toIso8601String();
+                          print(tenant.validUpto);
+                          print(selectedDate.toIso8601String());
+                        },
+                      );
+                    }
+                  },
+                  child: const Text("Pick a date"),
+                ),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
+                    setState(() {
+                      // burada ekranı yenile
+                    });
                   },
-                  child: const Text('Kapat'),
+                  child: const Text('Update the expire date'),
                 ),
               ],
-              icon: const Icon(Icons.refresh),
+              icon: const Icon(Icons.update),
             );
           },
         );
@@ -267,7 +441,7 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Bilgi Kutucuğu Başlığı'),
+              title: const Text('Details'),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -342,9 +516,9 @@ abstract class MenuItems {
   static const upgrade =
       MenuItem(text: 'Upgrade Subscription', icon: Icons.upgrade);
   static const details =
-      MenuItem(text: 'Show Tenant Details', icon: Icons.more_horiz);
-  static const deactivate = MenuItem(
-      text: 'Deactivate Tenant', icon: Icons.remove_circle_outline_rounded);
+      MenuItem(text: 'Show Tenant Details', icon: Icons.more_vert_sharp);
+  static const deactivate =
+      MenuItem(text: 'Deactivate Tenant', icon: Icons.disabled_visible_sharp);
 
   static Widget buildItem(MenuItem item) {
     return Row(
@@ -374,16 +548,37 @@ abstract class MenuItems {
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('Upgrade the subscription'),
-              content: const Text('Upgrade the subscription'),
               actions: [
+                ElevatedButton(
+                  onPressed: () async {
+                    DateTime selectedDate = DateTime.now();
+                    final DateTime? dateTime = await showDatePicker(
+                      context: context,
+                      initialDate: selectedDate,
+                      firstDate: selectedDate,
+                      lastDate: DateTime(2030),
+                    );
+                    if (dateTime != null) {
+                      TenantService.updateTenantSubscription(tenant.id!,
+                              TokenClass.me.token.toString(), selectedDate)
+                          .then(
+                        (v) {
+                          print(v.exception);
+                          tenant.validUpto = selectedDate.toString();
+                        },
+                      );
+                    }
+                  },
+                  child: const Text("Pick a date"),
+                ),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text('Close'),
+                  child: const Text('Update the expire date'),
                 ),
               ],
-              icon: const Icon(Icons.refresh),
+              icon: const Icon(Icons.update),
             );
           },
         );
@@ -393,7 +588,7 @@ abstract class MenuItems {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Tenants Detail'),
+              title: const Text('Tenants Detail'),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -410,7 +605,7 @@ abstract class MenuItems {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text('Kapat'),
+                  child: const Text('Close'),
                 ),
               ],
               icon: const Icon(Icons.refresh),

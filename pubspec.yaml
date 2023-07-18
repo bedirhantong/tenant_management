@@ -41,6 +41,7 @@ dependencies:
   responsive_table: ^0.2.0+2
   scalable_data_table: ^0.0.2
   dropdown_button2: ^2.3.5
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:
