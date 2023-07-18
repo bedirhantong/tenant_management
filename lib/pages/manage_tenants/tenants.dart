@@ -17,6 +17,10 @@ class Tenants extends StatefulWidget {
 
 class _TenantsState extends State<Tenants> {
   late Future<BaseModel<List<TenantModel>>> _getTenantFuture;
+  var tenantId = TextEditingController();
+  var tenantCorpName = TextEditingController();
+  var tenantAdminEmail = TextEditingController();
+  var tenantIssuer = TextEditingController();
 
   @override
   void initState() {
@@ -58,92 +62,19 @@ class _TenantsState extends State<Tenants> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // email
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                prefixIcon: Icon(Icons.person_outline_outlined),
-                                labelText: "Id",
-                                hintText: "Id",
-                                labelStyle: TextStyle(
-                                  color: Colors.black38,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green),
-                                ),
-                              ),
-                              onChanged: (value) {
-                                setState(() {});
-                              },
-                            ),
+                            buildTextFormFieldForId(),
                             const SizedBox(
                               height: 20,
                             ),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                prefixIcon: Icon(Icons.person),
-                                labelText: "Corporation Name",
-                                hintText: "Corporation Name",
-                                labelStyle: TextStyle(
-                                  color: Colors.black38,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green),
-                                ),
-                              ),
-                              onChanged: (value) {
-                                setState(() {});
-                              },
-                            ),
+                            buildTextFormFieldForCorpName(),
                             const SizedBox(
                               height: 20,
                             ),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                prefixIcon: Icon(Icons.email_outlined),
-                                labelText: "Admin e-mail",
-                                hintText: "Admin e-mail",
-                                labelStyle: TextStyle(
-                                  color: Colors.black38,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green),
-                                ),
-                              ),
-                              onChanged: (value) {
-                                setState(() {});
-                              },
-                            ),
+                            buildTextFormFieldAdminEmail(),
                             const SizedBox(
                               height: 20,
                             ),
-                            TextFormField(
-                              decoration: const InputDecoration(
-                                prefixIcon:
-                                    Icon(Icons.settings_input_svideo_sharp),
-                                labelText: "Issuer",
-                                hintText: "Issuer",
-                                labelStyle: TextStyle(
-                                  color: Colors.black38,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green),
-                                ),
-                              ),
-                              onChanged: (value) {
-                                setState(() {});
-                              },
-                            ),
+                            buildTextFormFieldForIssuer(),
                             const SizedBox(
                               height: 20,
                             ),
@@ -154,6 +85,15 @@ class _TenantsState extends State<Tenants> {
                     actions: [
                       TextButton(
                         onPressed: () {
+                          setState(() {
+                            TenantService.createTenant(
+                                TokenClass.me.token.toString(),
+                                tenantId.text,
+                                tenantCorpName.text,
+                                tenantAdminEmail.text,
+                                tenantIssuer.text);
+                            _getTokenAndFetchTenants();
+                          });
                           Navigator.of(context).pop();
                         },
                         child: const Text('Add'),
@@ -194,6 +134,98 @@ class _TenantsState extends State<Tenants> {
       body: FutureDataBuilder(getTenantFuture: _getTenantFuture),
     );
   }
+
+  TextFormField buildTextFormFieldForIssuer() {
+    return TextFormField(
+      decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.settings_input_svideo_sharp),
+        labelText: "Issuer",
+        hintText: "Issuer",
+        labelStyle: TextStyle(
+          color: Colors.black38,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.green),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.green),
+        ),
+      ),
+      controller: tenantIssuer,
+      onChanged: (value) {
+        setState(() {});
+      },
+    );
+  }
+
+  TextFormField buildTextFormFieldAdminEmail() {
+    return TextFormField(
+      decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.email_outlined),
+        labelText: "Admin e-mail",
+        hintText: "Admin e-mail",
+        labelStyle: TextStyle(
+          color: Colors.black38,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.green),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.green),
+        ),
+      ),
+      controller: tenantAdminEmail,
+      onChanged: (value) {
+        setState(() {});
+      },
+    );
+  }
+
+  TextFormField buildTextFormFieldForCorpName() {
+    return TextFormField(
+      decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.person),
+        labelText: "Corporation Name",
+        hintText: "Corporation Name",
+        labelStyle: TextStyle(
+          color: Colors.black38,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.green),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.green),
+        ),
+      ),
+      controller: tenantCorpName,
+      onChanged: (value) {
+        setState(() {});
+      },
+    );
+  }
+
+  TextFormField buildTextFormFieldForId() {
+    return TextFormField(
+      decoration: const InputDecoration(
+        prefixIcon: Icon(Icons.person_outline_outlined),
+        labelText: "Id",
+        hintText: "Id",
+        labelStyle: TextStyle(
+          color: Colors.black38,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.green),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.green),
+        ),
+      ),
+      controller: tenantId,
+      onChanged: (value) {
+        setState(() {});
+      },
+    );
+  }
 }
 
 class FutureDataBuilder extends StatefulWidget {
@@ -225,149 +257,185 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
               itemCount: tenantList.length,
               itemBuilder: (context, index) {
                 final tenant = tenantList[index];
-                return DataTable(
-                  border: const TableBorder(
-                    horizontalInside:
-                        BorderSide(color: Colors.red, style: BorderStyle.solid),
-                    left:
-                        BorderSide(color: Colors.red, style: BorderStyle.solid),
-                  ),
-                  showBottomBorder: true,
-                  sortAscending: true,
-                  columns: <DataColumn>[
-                    DataColumn(
-                      label: Expanded(
-                        child: Text(
-                          'Id',
-                          style: GoogleFonts.robotoMono(
-                              textStyle: Theme.of(context).textTheme.bodySmall),
+                return Container(
+                  padding: const EdgeInsets.all(20.0),
+                  margin: const EdgeInsets.all(10.0),
+                  child: DataTable(
+                    border: const TableBorder(
+                      horizontalInside: BorderSide(
+                          color: Colors.red, style: BorderStyle.solid),
+                      left: BorderSide(
+                          color: Colors.red, style: BorderStyle.solid),
+                    ),
+                    dividerThickness: double.infinity,
+                    showBottomBorder: true,
+                    sortAscending: true,
+                    columns: <DataColumn>[
+                      DataColumn(
+                        label: Expanded(
+                          child: Container(
+                            width: 100,
+                            height: 50,
+                            child: Text(
+                              'Id',
+                              style: GoogleFonts.robotoMono(
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodySmall),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    DataColumn(
-                      label: Expanded(
-                        child: Text(
-                          'Name',
-                          style: GoogleFonts.robotoMono(
-                              textStyle: Theme.of(context).textTheme.bodySmall),
+                      DataColumn(
+                        label: Expanded(
+                          child: Container(
+                            width: 100,
+                            height: 50,
+                            child: Text(
+                              'Name',
+                              style: GoogleFonts.robotoMono(
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodySmall),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    DataColumn(
-                      label: Expanded(
-                        child: Text(
-                          'Admin Email',
-                          style: GoogleFonts.robotoMono(
-                              textStyle: Theme.of(context).textTheme.bodySmall),
+                      DataColumn(
+                        label: Expanded(
+                          child: Container(
+                            width: 100,
+                            height: 50,
+                            child: Text(
+                              'Admin Email',
+                              style: GoogleFonts.robotoMono(
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodySmall),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    DataColumn(
-                      label: Expanded(
-                        child: Text(
-                          'Valid Upto',
-                          style: GoogleFonts.robotoMono(
-                              textStyle: Theme.of(context).textTheme.bodySmall),
+                      DataColumn(
+                        label: Expanded(
+                          child: Container(
+                            width: 100,
+                            height: 50,
+                            child: Text(
+                              'Valid Upto',
+                              style: GoogleFonts.robotoMono(
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodySmall),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    DataColumn(
-                      label: Expanded(
-                        child: Text(
-                          'Active',
-                          style: GoogleFonts.robotoMono(
-                              textStyle: Theme.of(context).textTheme.bodySmall),
+                      DataColumn(
+                        label: Expanded(
+                          child: Container(
+                            width: 100,
+                            height: 50,
+                            child: Text(
+                              'Active',
+                              style: GoogleFonts.robotoMono(
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodySmall),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                    DataColumn(
-                      label: Expanded(
-                        child: Text(
-                          'Actions',
-                          style: GoogleFonts.robotoMono(
-                              textStyle: Theme.of(context).textTheme.bodySmall),
+                      DataColumn(
+                        label: Expanded(
+                          child: Container(
+                            width: 100,
+                            height: 50,
+                            child: Text(
+                              'Actions',
+                              style: GoogleFonts.robotoMono(
+                                  textStyle:
+                                      Theme.of(context).textTheme.bodySmall),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                  rows: <DataRow>[
-                    DataRow(
-                      cells: <DataCell>[
-                        DataCell(
-                          Text(tenant.id ?? ''),
-                        ),
-                        DataCell(
-                          Text(tenant.name ?? ''),
-                        ),
-                        DataCell(
-                          Text(tenant.adminEmail ?? ''),
-                        ),
-                        DataCell(
-                          TextButton(
-                              child: Text(tenant.validUpto ?? ''),
-                              onPressed: () {}),
-                        ),
-                        DataCell(
-                          TextButton(
-                              child: Text(tenant.isActive.toString()),
-                              onPressed: () {}),
-                        ),
-                        DataCell(
-                          DropdownButtonHideUnderline(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton2(
-                                customButton: const Icon(
-                                  Icons.list,
-                                  size: 46,
-                                  color: Colors.green,
-                                ),
-                                items: [
-                                  ...MenuItems.firstItems.map(
-                                    (item) => DropdownMenuItem<MenuItem>(
-                                      value: item,
-                                      child: MenuItems.buildItem(item),
+                    ],
+                    rows: <DataRow>[
+                      DataRow(
+                        cells: <DataCell>[
+                          DataCell(
+                            Text(tenant.id ?? ''),
+                          ),
+                          DataCell(
+                            Text(tenant.name ?? ''),
+                          ),
+                          DataCell(
+                            Text(tenant.adminEmail ?? ''),
+                          ),
+                          DataCell(
+                            TextButton(
+                                child: Text(tenant.validUpto ?? ''),
+                                onPressed: () {}),
+                          ),
+                          DataCell(
+                            // tenant.isActive
+                            TextButton(
+                                child: Text(tenant.isActive.toString()),
+                                onPressed: () {}),
+                          ),
+                          DataCell(
+                            DropdownButtonHideUnderline(
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton2(
+                                  customButton: const Icon(
+                                    Icons.list,
+                                    size: 46,
+                                    color: Colors.green,
+                                  ),
+                                  items: [
+                                    ...MenuItems.firstItems.map(
+                                      (item) => DropdownMenuItem<MenuItem>(
+                                        value: item,
+                                        child: MenuItems.buildItem(item),
+                                      ),
                                     ),
-                                  ),
-                                  const DropdownMenuItem<Divider>(
-                                      enabled: false, child: Divider()),
-                                  ...MenuItems.secondItems.map(
-                                    (item) => DropdownMenuItem<MenuItem>(
-                                      value: item,
-                                      child: MenuItems.buildItem(item),
+                                    const DropdownMenuItem<Divider>(
+                                        enabled: false, child: Divider()),
+                                    ...MenuItems.secondItems.map(
+                                      (item) => DropdownMenuItem<MenuItem>(
+                                        value: item,
+                                        child: MenuItems.buildItem(item),
+                                      ),
                                     ),
-                                  ),
-                                ],
-                                onChanged: (value) {
-                                  onChanged(value! as MenuItem, tenant);
-                                },
-                                dropdownStyleData: DropdownStyleData(
-                                  width: 250,
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 6),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.green.shade400,
-                                  ),
-                                  offset: const Offset(0, 8),
-                                ),
-                                menuItemStyleData: MenuItemStyleData(
-                                  customHeights: [
-                                    ...List<double>.filled(
-                                        MenuItems.firstItems.length, 48),
-                                    8,
-                                    ...List<double>.filled(
-                                        MenuItems.secondItems.length, 48),
                                   ],
-                                  padding: const EdgeInsets.only(
-                                      left: 16, right: 16),
+                                  onChanged: (value) {
+                                    onChanged(value! as MenuItem, tenant);
+                                  },
+                                  dropdownStyleData: DropdownStyleData(
+                                    width: 250,
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 6),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.green.shade400,
+                                    ),
+                                    offset: const Offset(0, 8),
+                                  ),
+                                  menuItemStyleData: MenuItemStyleData(
+                                    customHeights: [
+                                      ...List<double>.filled(
+                                          MenuItems.firstItems.length, 48),
+                                      8,
+                                      ...List<double>.filled(
+                                          MenuItems.secondItems.length, 48),
+                                    ],
+                                    padding: const EdgeInsets.only(
+                                        left: 16, right: 16),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 );
               },
             );

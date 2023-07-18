@@ -99,7 +99,7 @@ class _LoginFormState extends State<LoginForm> {
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.apartment_outlined),
                 labelText: "Tenant",
-                hintText: "Tenant",
+                hintText: "Tenant *",
                 labelStyle: TextStyle(
                   color: Colors.grey,
                 ),
