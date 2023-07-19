@@ -48,10 +48,10 @@ class _LoginFormState extends State<LoginForm> {
                 labelText: "E-mail",
                 hintText: "E-mail",
                 labelStyle: TextStyle(
-                  color: Colors.white60,
+                  color: Color(0xB2000000),
                 ),
                 hintStyle: TextStyle(
-                  color: Colors.white60,
+                  color: Color(0xB2000000),
                   fontSize: 12.0,
                 ),
                 border: OutlineInputBorder(
@@ -79,10 +79,10 @@ class _LoginFormState extends State<LoginForm> {
                 labelText: "Password",
                 hintText: "Password",
                 labelStyle: const TextStyle(
-                  color: Colors.white60,
+                  color: Color(0xB2000000),
                 ),
                 hintStyle: const TextStyle(
-                  color: Colors.white60,
+                  color: Color(0xB2000000),
                   fontSize: 12.0,
                 ),
                 border: const OutlineInputBorder(
@@ -109,10 +109,10 @@ class _LoginFormState extends State<LoginForm> {
                 labelText: "Tenant",
                 hintText: "Tenant *",
                 labelStyle: TextStyle(
-                  color: Colors.white60,
+                  color: Color(0xB2000000),
                 ),
                 hintStyle: TextStyle(
-                  color: Colors.white60,
+                  color: Color(0xB2000000),
                   fontSize: 12.0,
                   fontStyle: FontStyle.italic,
                 ),

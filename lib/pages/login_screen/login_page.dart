@@ -8,7 +8,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF685BFF).withOpacity(0.1),
+      backgroundColor: const Color(0x2F685BFF).withOpacity(0.1),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
               children: [
                 const SizedBox(height: 50.0),
                 Card(
-                  color: Colors.white30,
+                  color: Colors.white60,
                   child: Container(
                     width: 400.0,
                     padding: const EdgeInsets.all(20.0),
@@ -35,11 +35,11 @@ class LoginPage extends StatelessWidget {
                         ),
                         Text(
                           'Sign In',
-                          style: TextStyle(color: Colors.white, fontSize: 25.0),
+                          style: TextStyle(color: Colors.black, fontSize: 25.0),
                         ),
                         Text(
                           'Enter your credentials to get started.',
-                          style: TextStyle(color: Colors.white, fontSize: 14.0),
+                          style: TextStyle(color: Colors.black, fontSize: 14.0),
                         ),
                         LoginForm(),
                       ],

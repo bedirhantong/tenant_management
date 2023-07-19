@@ -44,6 +44,7 @@ dependencies:
   google_fonts: ^4.0.4
   sidebarx: ^0.16.0
   bs_flutter_datatable: ^1.2.5
+  syncfusion_flutter_charts: ^22.1.39
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,7 @@ flutter:
   assets:
     - assets/images/logo/
     - assets/images/screenshots/
+    - assets/videos/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

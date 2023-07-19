@@ -81,6 +81,14 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
             final dataRows = paginatedTenantList.map((tenant) {
               return DataRow(
                 cells: <DataCell>[
+                  const DataCell(
+                    Center(
+                      child: Icon(
+                        Icons.corporate_fare_rounded,
+                        color: Color(0xFF2E2E48),
+                      ),
+                    ),
+                  ),
                   DataCell(
                     Center(
                       child: Text(
@@ -164,7 +172,7 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                               padding: const EdgeInsets.symmetric(vertical: 6),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: const Color(0xFF685BFF),
+                                color: const Color(0xFF2E2E48),
                               ),
                               offset: const Offset(0, 8),
                             ),
@@ -194,38 +202,65 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
               children: [
                 Container(
                   // padding: const EdgeInsets.all(20.0),
-                  margin: const EdgeInsets.all(10.0),
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 45.0),
                   child: DataTable(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                          30), // Köşeleri yuvarlak hale getirir
+                      border: Border.all(
+                          color: const Color(0xFF464667),
+                          style: BorderStyle.solid),
+                    ),
                     border: const TableBorder(
                       verticalInside: BorderSide(
-                          color: Colors.white38, style: BorderStyle.solid),
+                          color: Colors.white38, style: BorderStyle.none),
                       horizontalInside: BorderSide(
-                          color: Colors.white38, style: BorderStyle.solid),
+                          color: Colors.white38, style: BorderStyle.none),
                       right: BorderSide(
                         color: Colors.white38,
-                        style: BorderStyle.solid,
+                        style: BorderStyle.none,
                       ),
                       left: BorderSide(
-                          color: Colors.white38, style: BorderStyle.solid),
+                        color: Colors.white38,
+                        style: BorderStyle.none,
+                      ),
                       bottom: BorderSide(
-                          color: Colors.white38, style: BorderStyle.solid),
+                          color: Colors.white38, style: BorderStyle.none),
                       top: BorderSide(
-                          color: Colors.white38, style: BorderStyle.solid),
+                          color: Colors.white38, style: BorderStyle.none),
                     ),
-                    showBottomBorder: true,
+                    showBottomBorder: false,
                     sortAscending: true,
+                    dividerThickness: 3.0,
                     columns: <DataColumn>[
+                      DataColumn(
+                        label: Center(
+                          child: TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              ' ',
+                            ),
+                          ),
+                        ),
+                      ),
                       DataColumn(
                         label: Center(
                           child: TextButton(
                             onPressed: () {},
                             child: Text(
                               'Id',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.inconsolata(
-                                textStyle:
-                                    Theme.of(context).textTheme.headlineSmall,
-                                color: Colors.white38,
+                              textAlign: TextAlign
+                                  .center, // Metnin tam ortada olmasını sağlar
+                              style: GoogleFonts.sourceSans3(
+                                textStyle: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight
+                                          .bold, // Metnin kalın (bold) olmasını sağlar
+                                      color: Colors.white,
+                                    ),
                               ),
                             ),
                           ),
@@ -237,11 +272,18 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                             onPressed: () {},
                             child: Text(
                               'Name',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.inconsolata(
-                                  textStyle:
-                                      Theme.of(context).textTheme.headlineSmall,
-                                  color: Colors.white38),
+                              textAlign: TextAlign
+                                  .center, // Metnin tam ortada olmasını sağlar
+                              style: GoogleFonts.sourceSans3(
+                                textStyle: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight
+                                          .bold, // Metnin kalın (bold) olmasını sağlar
+                                      color: Colors.white,
+                                    ),
+                              ),
                             ),
                           ),
                         ),
@@ -252,11 +294,18 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                             onPressed: () {},
                             child: Text(
                               'Admin Email',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.inconsolata(
-                                  textStyle:
-                                      Theme.of(context).textTheme.headlineSmall,
-                                  color: Colors.white38),
+                              textAlign: TextAlign
+                                  .center, // Metnin tam ortada olmasını sağlar
+                              style: GoogleFonts.sourceSans3(
+                                textStyle: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight
+                                          .bold, // Metnin kalın (bold) olmasını sağlar
+                                      color: Colors.white,
+                                    ),
+                              ),
                             ),
                           ),
                         ),
@@ -267,10 +316,18 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                             onPressed: () {},
                             child: Text(
                               'Valid Upto',
-                              style: GoogleFonts.inconsolata(
-                                  textStyle:
-                                      Theme.of(context).textTheme.headlineSmall,
-                                  color: Colors.white38),
+                              textAlign: TextAlign
+                                  .center, // Metnin tam ortada olmasını sağlar
+                              style: GoogleFonts.sourceSans3(
+                                textStyle: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight
+                                          .bold, // Metnin kalın (bold) olmasını sağlar
+                                      color: Colors.white,
+                                    ),
+                              ),
                             ),
                           ),
                         ),
@@ -281,11 +338,18 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                             onPressed: () {},
                             child: Text(
                               'Active',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.inconsolata(
-                                  textStyle:
-                                      Theme.of(context).textTheme.headlineSmall,
-                                  color: Colors.white38),
+                              textAlign: TextAlign
+                                  .center, // Metnin tam ortada olmasını sağlar
+                              style: GoogleFonts.sourceSans3(
+                                textStyle: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight
+                                          .bold, // Metnin kalın (bold) olmasını sağlar
+                                      color: Colors.white,
+                                    ),
+                              ),
                             ),
                           ),
                         ),
@@ -296,10 +360,18 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                             onPressed: () {},
                             child: Text(
                               'Actions',
-                              style: GoogleFonts.crimsonPro(
-                                  textStyle:
-                                      Theme.of(context).textTheme.headlineSmall,
-                                  color: Colors.white38),
+                              textAlign: TextAlign
+                                  .center, // Metnin tam ortada olmasını sağlar
+                              style: GoogleFonts.sourceSans3(
+                                textStyle: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight
+                                          .bold, // Metnin kalın (bold) olmasını sağlar
+                                      color: Colors.white,
+                                    ),
+                              ),
                             ),
                           ),
                         ),
@@ -718,7 +790,7 @@ class _ScreensExample extends StatefulWidget {
 }
 
 class _ScreensExampleState extends State<_ScreensExample> {
-  late Future<BaseModel<List<TenantModel>>> _getTenantFuture;
+  // late Future<BaseModel<List<TenantModel>>> _getTenantFuture;
 
   @override
   void initState() {
@@ -728,9 +800,9 @@ class _ScreensExampleState extends State<_ScreensExample> {
 
   Future<void> _getTokenAndFetchTenants() async {
     setState(() {
-      _getTenantFuture = TenantService.getTenants(
-        TokenClass.me.token.toString(),
-      );
+      // _getTenantFuture = TenantService.getTenants(
+      //   TokenClass.me.token.toString(),
+      // );
     });
   }
 

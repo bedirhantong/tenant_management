@@ -8,3 +8,4 @@ A new Mavi Arge project.
 ## Screenshots
 
 ![](assets/images/screenshots/login_screen.jpg)
+![](assets/videos/tenants.mp4)

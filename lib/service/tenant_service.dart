@@ -130,7 +130,6 @@ class TenantService {
             }),
           )
           .timeout(const Duration(seconds: 60));
-      print(response.body);
       switch (response.statusCode) {
         case 200:
           return BaseModel<String>.fromJson(
@@ -145,7 +144,6 @@ class TenantService {
     } on TimeoutException {
       throw Exception("Timeout... ");
     } catch (e) {
-      print("tenant service e.toString() : ${e.toString()}");
       throw Exception(e.toString());
     }
   }

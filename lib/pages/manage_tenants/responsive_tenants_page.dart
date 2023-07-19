@@ -41,6 +41,7 @@ class _ResponsiveTenantsPageState extends State<ResponsiveTenantsPage> {
         // backgroundColor: const Color(0xFF5F5FA7).withOpacity(0.6),
         backgroundColor: const Color(0xFF464667),
         appBar: AppBar(
+          forceMaterialTransparency: true,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
@@ -48,12 +49,11 @@ class _ResponsiveTenantsPageState extends State<ResponsiveTenantsPage> {
                   30), // Dilediğiniz yuvarlaklık oranını belirleyebilirsiniz
             ),
           ),
-          elevation: 28,
+          elevation: 50,
           title: const Text(
             "Tenants ",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontSize: 40),
           ),
-          backgroundColor: const Color(0xFF2C2B4B).withOpacity(0.02),
           centerTitle: true,
           actions: [
             ElevatedButton(
@@ -103,7 +103,14 @@ class _ResponsiveTenantsPageState extends State<ResponsiveTenantsPage> {
                                   tenantIssuer.text);
                               _getTokenAndFetchTenants();
                             });
-                            Navigator.of(context).pop();
+                            Navigator.pop(context);
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Tenants()),
+                              (route) => false,
+                            );
+                            // Navigator.of(context).pop();
                           },
                           child: const Text('Add'),
                         ),
