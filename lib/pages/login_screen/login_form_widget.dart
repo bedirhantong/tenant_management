@@ -48,13 +48,17 @@ class _LoginFormState extends State<LoginForm> {
                 labelText: "E-mail",
                 hintText: "E-mail",
                 labelStyle: TextStyle(
-                  color: Colors.black38,
+                  color: Colors.white60,
+                ),
+                hintStyle: TextStyle(
+                  color: Colors.white60,
+                  fontSize: 12.0,
                 ),
                 border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Color(0xFF685BFF)),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Color(0xFF685BFF)),
                 ),
               ),
               onChanged: (value) {
@@ -75,13 +79,17 @@ class _LoginFormState extends State<LoginForm> {
                 labelText: "Password",
                 hintText: "Password",
                 labelStyle: const TextStyle(
-                  color: Colors.grey,
+                  color: Colors.white60,
+                ),
+                hintStyle: const TextStyle(
+                  color: Colors.white60,
+                  fontSize: 12.0,
                 ),
                 border: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Color(0xFF685BFF)),
                 ),
                 focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Color(0xFF685BFF)),
                 ),
                 suffixIcon: _buildSuffixIcon(),
               ),
@@ -101,18 +109,18 @@ class _LoginFormState extends State<LoginForm> {
                 labelText: "Tenant",
                 hintText: "Tenant *",
                 labelStyle: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.white60,
                 ),
                 hintStyle: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.white60,
                   fontSize: 12.0,
                   fontStyle: FontStyle.italic,
                 ),
                 border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Color(0xFF685BFF)),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
+                  borderSide: BorderSide(color: Color(0xFF685BFF)),
                 ),
               ),
             ),
@@ -135,7 +143,8 @@ class _LoginFormState extends State<LoginForm> {
                     style: const TextStyle(color: Colors.black, fontSize: 12),
                   ),
                   style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(Colors.black),
+                    foregroundColor:
+                        MaterialStateProperty.all(const Color(0xFF685BFF)),
                   ),
                 ),
                 // Forgot Password
@@ -149,7 +158,8 @@ class _LoginFormState extends State<LoginForm> {
                     style: const TextStyle(color: Colors.black, fontSize: 12),
                   ),
                   style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(Colors.black),
+                    foregroundColor:
+                        MaterialStateProperty.all(const Color(0xFF685BFF)),
                   ),
                 ),
               ],
@@ -162,7 +172,7 @@ class _LoginFormState extends State<LoginForm> {
               width: double.infinity,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: const Color(0xFF685BFF),
                   ),
                   onPressed: () {
                     showLogIn(TokensService.getToken(email, password));
@@ -199,7 +209,8 @@ class _LoginFormState extends State<LoginForm> {
                 style: const TextStyle(color: Colors.black, fontSize: 12),
               ),
               style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all(Colors.black),
+                foregroundColor:
+                    MaterialStateProperty.all(const Color(0xFF685BFF)),
               ),
             ),
           ],

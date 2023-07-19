@@ -18,6 +18,14 @@ boolean_selector
 2.17
 file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.1/
 file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.1/lib/
+bs_flutter_datatable
+2.12
+file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/bs_flutter_datatable-1.2.5/
+file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/bs_flutter_datatable-1.2.5/lib/
+bs_flutter_utils
+2.12
+file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/bs_flutter_utils-1.0.2/
+file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/bs_flutter_utils-1.0.2/lib/
 characters
 2.12
 file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/characters-1.3.0/
@@ -138,6 +146,10 @@ scalable_data_table
 2.12
 file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/scalable_data_table-0.0.2/
 file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/scalable_data_table-0.0.2/lib/
+sidebarx
+2.15
+file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/sidebarx-0.16.0/
+file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/sidebarx-0.16.0/lib/
 source_span
 2.14
 file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.9.1/
@@ -194,4 +206,8 @@ flutter_test
 3.0
 file:///C:/src/flutter/packages/flutter_test/
 file:///C:/src/flutter/packages/flutter_test/lib/
+flutter_web_plugins
+3.0
+file:///C:/src/flutter/packages/flutter_web_plugins/
+file:///C:/src/flutter/packages/flutter_web_plugins/lib/
 2
