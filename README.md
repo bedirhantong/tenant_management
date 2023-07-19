@@ -9,7 +9,7 @@ This application is a "Tenant Manager" application used to manage tenants. It al
 * [Contribution](#contribution)
 * [Technologies](#technologies)
 * [Future additions](#future)
-* [Screenshots](#screenshots)
+* [Demo](#demo)
 
 
 
@@ -61,5 +61,9 @@ This app allows:
 - [ ] Flutter charts for usable details
 
 
-## Screenshots
-![](assets/videos/tenants.mp4)
+## Demo
+
+- You can see the demo video by clicking [here](https://youtu.be/wCdAD1sTFFo).
+
+![](assets/images/screenshots/login.jpg)
+![](assets/images/screenshots/tenants.jpg)

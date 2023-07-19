@@ -2,20 +2,8 @@
   "configVersion": 2,
   "packages": [
     {
-      "name": "adaptivex",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/adaptivex-0.0.1+6",
-      "packageUri": "lib/",
-      "languageVersion": "2.15"
-    },
-    {
       "name": "anim_search_bar",
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/anim_search_bar-2.0.3",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "ansicolor",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/ansicolor-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -224,24 +212,6 @@
       "languageVersion": "2.17"
     },
     {
-      "name": "printx",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/printx-0.0.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.15"
-    },
-    {
-      "name": "responsive_table",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/responsive_table-0.2.0+2",
-      "packageUri": "lib/",
-      "languageVersion": "2.15"
-    },
-    {
-      "name": "scalable_data_table",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/scalable_data_table-0.0.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "sidebarx",
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/sidebarx-0.16.0",
       "packageUri": "lib/",
@@ -332,7 +302,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-07-19T11:10:28.614075Z",
+  "generated": "2023-07-19T16:17:31.909817Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }

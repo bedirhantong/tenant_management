@@ -3,7 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:tenant_manager/model/service_model/base_model.dart';
 import 'package:tenant_manager/model/service_model/tenant_models/tenant_model.dart';
+import 'package:tenant_manager/pages/manage_tenants/admin_profile.dart';
+import 'package:tenant_manager/pages/manage_tenants/home.dart';
 import 'package:tenant_manager/pages/manage_tenants/responsive_tenants_page.dart';
+import 'package:tenant_manager/pages/manage_tenants/settings.dart';
 import 'package:tenant_manager/service/tenant_service.dart';
 
 import '../../consts/token_class.dart';
@@ -58,6 +61,8 @@ class FutureDataBuilder extends StatefulWidget {
 class _FutureDataBuilderState extends State<FutureDataBuilder> {
   int currentPage = 1; // Track the current page number
   int rowsPerPage = 10; // Define the number of rows per page
+  var remainDay = "";
+  var temp = "";
 
   @override
   Widget build(BuildContext context) {
@@ -118,10 +123,35 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                   ),
                   DataCell(
                     Center(
-                      child: Text(
-                        tenant.validUpto ?? '',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(color: Colors.white),
+                      child: TextButton(
+                        child: Text(
+                          tenant.validUpto ?? '',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          var diff = timeDiff(tenant.validUpto!);
+
+                          temp = DateTime.parse(tenant.validUpto!)
+                              .toIso8601String();
+
+                          if (tenant.validUpto == '$diff days remaining') {
+                            print("jbkdskjabfhasjkdbfhasbfasjkdf");
+                            tenant.validUpto = temp;
+                          } else {
+                            if (diff <= 0) {
+                              setState(() {
+                                tenant.validUpto =
+                                    'Expired'; // Geçerlilik süresi dolmuş
+                              });
+                            } else {
+                              setState(() {
+                                tenant.validUpto = '$diff days remaining'
+                                    .toString(); // Güncel süre
+                              });
+                            }
+                          }
+                        },
                       ),
                     ),
                   ),
@@ -424,6 +454,15 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
         }
       },
     );
+  }
+
+  int timeDiff(String validUpto) {
+    DateTime dateNow = DateTime.now();
+    DateTime validUptoDate = DateTime.parse(validUpto);
+    Duration difference = validUptoDate.difference(dateNow);
+    int daysDifference = difference.inDays;
+
+    return daysDifference;
   }
 
   void onChanged(MenuItem item, TenantModel tenant) {
@@ -815,37 +854,16 @@ class _ScreensExampleState extends State<_ScreensExample> {
         final pageTitle = _getTitleByIndex(widget.controller.selectedIndex);
         switch (widget.controller.selectedIndex) {
           case 0:
-            return Text(
-              pageTitle,
-              style: theme.textTheme.headlineSmall,
-            );
+            return const HomePage();
           case 1:
             //tenants
             return const ResponsiveTenantsPage();
           case 2:
             //Create Tenant
-            return Text(
-              pageTitle,
-              style: theme.textTheme.headlineSmall,
-            );
+            return const AdminProfile();
           case 3:
             //admin profile
-            return Text(
-              pageTitle,
-              style: theme.textTheme.headlineSmall,
-            );
-          case 4:
-            //Settings
-            return Text(
-              pageTitle,
-              style: theme.textTheme.headlineSmall,
-            );
-          case 5:
-            //refresh
-            return Text(
-              pageTitle,
-              style: theme.textTheme.headlineSmall,
-            );
+            return const Settings();
           default:
             return Text(
               pageTitle,
