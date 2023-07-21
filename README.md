@@ -64,6 +64,7 @@ This app allows:
 ## Demo
 
 - You can see the demo video by clicking [here](https://youtu.be/wCdAD1sTFFo).
-
+  
+![](assets/videos/tenants.mp4)
 ![](assets/images/screenshots/login.jpg)
 ![](assets/images/screenshots/tenants.jpg)
