@@ -5,8 +5,10 @@ import 'package:tenant_manager/model/service_model/base_model.dart';
 import 'package:tenant_manager/model/service_model/tenant_models/tenant_model.dart';
 import 'package:tenant_manager/pages/manage_tenants/admin_profile.dart';
 import 'package:tenant_manager/pages/manage_tenants/home.dart';
+import 'package:tenant_manager/pages/subscription/account.dart';
 import 'package:tenant_manager/pages/manage_tenants/responsive_tenants_page.dart';
 import 'package:tenant_manager/pages/manage_tenants/settings.dart';
+import 'package:tenant_manager/pages/subscription/update_subscription.dart';
 import 'package:tenant_manager/service/tenant_service.dart';
 
 import '../../consts/token_class.dart';
@@ -63,6 +65,28 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
   int rowsPerPage = 10; // Define the number of rows per page
   var remainDay = "";
   var temp = "";
+
+  String cardNumber = '';
+  String expiryDate = '';
+  String cardHolderName = '';
+  String cvvCode = '';
+  bool isCvvFocused = false;
+  bool useGlassMorphism = false;
+  bool useBackgroundImage = false;
+  OutlineInputBorder? border;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    border = OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.grey.withOpacity(0.7),
+        width: 2.0,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +160,6 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                               .toIso8601String();
 
                           if (tenant.validUpto == '$diff days remaining') {
-                            print("jbkdskjabfhasjkdbfhasbfasjkdf");
                             tenant.validUpto = temp;
                           } else {
                             if (diff <= 0) {
@@ -410,36 +433,7 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
                     rows: dataRows,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: currentPage > 1
-                          ? () {
-                              setState(() {
-                                currentPage--;
-                              });
-                            }
-                          : null,
-                      icon: const Icon(Icons.arrow_back, color: Colors.white12),
-                    ),
-                    Text(
-                      'Page $currentPage of $totalPages',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    IconButton(
-                      onPressed: currentPage < totalPages
-                          ? () {
-                              setState(() {
-                                currentPage++;
-                              });
-                            }
-                          : null,
-                      icon: const Icon(Icons.arrow_forward,
-                          color: Colors.white12),
-                    ),
-                  ],
-                ),
+                buildPagination(totalPages),
               ],
             );
           } else {
@@ -456,6 +450,38 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
     );
   }
 
+  Row buildPagination(int totalPages) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          onPressed: currentPage > 1
+              ? () {
+                  setState(() {
+                    currentPage--;
+                  });
+                }
+              : null,
+          icon: const Icon(Icons.arrow_back, color: Colors.white12),
+        ),
+        Text(
+          'Page $currentPage of $totalPages',
+          style: const TextStyle(color: Colors.white),
+        ),
+        IconButton(
+          onPressed: currentPage < totalPages
+              ? () {
+                  setState(() {
+                    currentPage++;
+                  });
+                }
+              : null,
+          icon: const Icon(Icons.arrow_forward, color: Colors.white12),
+        ),
+      ],
+    );
+  }
+
   int timeDiff(String validUpto) {
     DateTime dateNow = DateTime.now();
     DateTime validUptoDate = DateTime.parse(validUpto);
@@ -468,47 +494,63 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
   void onChanged(MenuItem item, TenantModel tenant) {
     switch (item) {
       case MenuItems.upgrade:
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Upgrade the subscription'),
-              actions: [
-                ElevatedButton(
-                  onPressed: () async {
-                    DateTime dateNow = DateTime.now();
-                    final DateTime? selectedDate = await showDatePicker(
-                      context: context,
-                      initialDate: dateNow,
-                      firstDate: dateNow,
-                      lastDate: DateTime(2030),
-                    );
-                    if (selectedDate != null) {
-                      TenantService.updateTenantSubscription(
-                              TokenClass.me.token.toString(),
-                              tenant.id.toString(),
-                              selectedDate)
-                          .then(
-                        (v) {
-                          tenant.validUpto = selectedDate.toIso8601String();
-                        },
-                      );
-                    }
-                  },
-                  child: const Text("Pick a date"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    setState(() {});
-                  },
-                  child: const Text('Update the expire date'),
-                ),
-              ],
-              icon: const Icon(Icons.update),
-            );
-          },
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Account(),
+          ),
         );
+
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => UpdateSubscription(
+        //       tenant: tenant,
+        //     ),
+        //   ),
+        // );
+        // showDialog(
+        //   context: context,
+        //   builder: (BuildContext context) {
+        //     return AlertDialog(
+        //       title: const Text('Upgrade the subscription'),
+        //       content: const UpdateSubscription(),
+        //       actions: [
+        //         ElevatedButton(
+        //           onPressed: () async {
+        //             DateTime dateNow = DateTime.now();
+        //             final DateTime? selectedDate = await showDatePicker(
+        //               context: context,
+        //               initialDate: dateNow,
+        //               firstDate: dateNow,
+        //               lastDate: DateTime(2030),
+        //             );
+        //             if (selectedDate != null) {
+        //               TenantService.updateTenantSubscription(
+        //                       TokenClass.me.token.toString(),
+        //                       tenant.id.toString(),
+        //                       selectedDate)
+        //                   .then(
+        //                 (v) {
+        //                   tenant.validUpto = selectedDate.toIso8601String();
+        //                 },
+        //               );
+        //             }
+        //           },
+        //           child: const Text("Pick a date"),
+        //         ),
+        //         TextButton(
+        //           onPressed: () {
+        //             Navigator.of(context).pop();
+        //             setState(() {});
+        //           },
+        //           child: const Text('Update the expire date'),
+        //         ),
+        //       ],
+        //       icon: const Icon(Icons.update),
+        //     );
+        //   },
+        // );
         break;
       case MenuItems.details:
         showDialog(
@@ -829,22 +871,6 @@ class _ScreensExample extends StatefulWidget {
 }
 
 class _ScreensExampleState extends State<_ScreensExample> {
-  // late Future<BaseModel<List<TenantModel>>> _getTenantFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    _getTokenAndFetchTenants();
-  }
-
-  Future<void> _getTokenAndFetchTenants() async {
-    setState(() {
-      // _getTenantFuture = TenantService.getTenants(
-      //   TokenClass.me.token.toString(),
-      // );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

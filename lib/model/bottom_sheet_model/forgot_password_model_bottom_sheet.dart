@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../pages/forgot_password/forgot_password_email/forget_password_email.dart';
+import '../../pages/forgot_password/forgot_password_options/forgot_password_btn_widget.dart';
+
 class ForgotPasswordScreen {
   static Future<dynamic> buildShowModalBottomSheet(BuildContext context) {
     return showModalBottomSheet(
@@ -21,35 +24,35 @@ class ForgotPasswordScreen {
             const SizedBox(
               height: 20,
             ),
-            // ForgotPasswordBtnWidget(
-            //   btnIcon: Icons.mail_outline_rounded,
-            //   title: "E-mail",
-            //   subtitle: "Reset via E-mail verification.",
-            //   onTap: () {
-            //     // Navigator.pop(context); //bottom sheetten öncekine döneriz
-            //     // Navigator.push(
-            //     //   context,
-            //     //   MaterialPageRoute(
-            //     //     builder: (context) => const ForgotPasswordMailScreen(),
-            //     //   ),
-            //     // );
-            //   },
-            // ),
+            ForgotPasswordBtnWidget(
+              btnIcon: Icons.mail_outline_rounded,
+              title: "E-mail",
+              subtitle: "Reset via E-mail verification.",
+              onTap: () {
+                Navigator.pop(context); //bottom sheetten öncekine döneriz
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ForgotPasswordMailScreen(),
+                  ),
+                );
+              },
+            ),
             const SizedBox(
               height: 20,
             ),
-            // ForgotPasswordBtnWidget(
-            //   btnIcon: Icons.mobile_friendly_rounded,
-            //   title: "Phone",
-            //   subtitle: "Reset via Phone verification.",
-            //   onTap: () {
-            //     // Navigator.pop(context); //bottom sheetten öncekine döneriz
-            //     // Navigator.push(
-            //     //     context,
-            //     //     MaterialPageRoute(
-            //     //         builder: (context) => ForgotPasswordPhoneScreen()));
-            //   },
-            // ),
+            ForgotPasswordBtnWidget(
+              btnIcon: Icons.mobile_friendly_rounded,
+              title: "Phone",
+              subtitle: "Reset via Phone verification.",
+              onTap: () {
+                // Navigator.pop(context); //bottom sheetten öncekine döneriz
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => ForgotPasswordPhoneScreen()));
+              },
+            ),
           ],
         ),
       ),

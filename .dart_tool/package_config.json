@@ -86,10 +86,22 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "flutter_credit_card",
+      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_credit_card-3.0.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "flutter_otp_text_field",
+      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_otp_text_field-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "flutter_test",
@@ -302,7 +314,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-07-19T16:17:31.909817Z",
+  "generated": "2023-07-20T10:26:41.076153Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }

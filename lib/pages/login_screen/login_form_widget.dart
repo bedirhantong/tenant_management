@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tenant_manager/consts/token_class.dart';
+import 'package:tenant_manager/model/bottom_sheet_model/forgot_password_model_bottom_sheet.dart';
 
 import '../../model/service_model/base_model.dart';
 import '../../model/service_model/token_models/authenticate_model.dart';
@@ -151,6 +152,7 @@ class _LoginFormState extends State<LoginForm> {
                 TextButton.icon(
                   onPressed: () {
                     // Implement forgot password functionality
+                    ForgotPasswordScreen.buildShowModalBottomSheet(context);
                   },
                   icon: const Icon(Icons.lock_reset_outlined),
                   label: Text(
