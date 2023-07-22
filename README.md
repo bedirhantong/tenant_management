@@ -61,9 +61,16 @@ This app allows:
 - [ ] Flutter charts for usable details
 
 ## Screenshots
-
+- Login
 ![](assets/gifs/login.gif) 
 
+
+- Subscription and Payment
 ![](assets/gifs/subscription.gif) 
 
+
+- Modify tenant
+![](assets/gifs/modify_tenant.gif) 
+
+- Add new tenant
 ![](assets/gifs/add_tenant.gif) 
