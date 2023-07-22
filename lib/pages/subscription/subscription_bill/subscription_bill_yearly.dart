@@ -20,7 +20,7 @@ class _SubscriptionPlanBillYearlyState
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.6,
               child: Card(
                 color: const Color(0x737473FF).withOpacity(0.3),
                 child: Column(
@@ -29,11 +29,11 @@ class _SubscriptionPlanBillYearlyState
                       height: 10.0,
                     ),
                     const Text(
-                      'Pro Business',
+                      'Basic',
                       style: TextStyle(fontSize: 20.0, color: Colors.white),
                     ),
                     const Text(
-                      'Better Results',
+                      'Starter',
                       style: TextStyle(fontSize: 10.0, color: Colors.white),
                     ),
                     const ListTile(
@@ -42,7 +42,7 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Standard Maintenance',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -52,7 +52,7 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Basic Financial Reporting',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -62,7 +62,7 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Email Support',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -72,16 +72,16 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Standard Lease',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
                     const SizedBox(
-                      height: 10.0,
+                      height: 60.0,
                     ),
                     const Text(
-                      r'$250/year',
-                      style: TextStyle(fontSize: 24.0, color: Colors.white),
+                      r'$65/year',
+                      style: TextStyle(fontSize: 30.0, color: Colors.white),
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -109,7 +109,7 @@ class _SubscriptionPlanBillYearlyState
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.6,
               child: Card(
                 color: const Color(0x737473FF).withOpacity(0.3),
                 child: Column(
@@ -131,7 +131,7 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'All Basic Membership Features',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -141,7 +141,7 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Smart Maintenance Tracking',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -151,7 +151,7 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Advanced Financial Reporting ',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -161,16 +161,16 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Priority Email Support',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
                     const SizedBox(
-                      height: 10.0,
+                      height: 30.0,
                     ),
                     const Text(
-                      r'$250/year',
-                      style: TextStyle(fontSize: 24.0, color: Colors.white),
+                      r'$139/year',
+                      style: TextStyle(fontSize: 30.0, color: Colors.white),
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -198,7 +198,7 @@ class _SubscriptionPlanBillYearlyState
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.6,
               child: Card(
                 color: const Color(0x737473FF).withOpacity(0.3),
                 child: Column(
@@ -207,11 +207,11 @@ class _SubscriptionPlanBillYearlyState
                       height: 10.0,
                     ),
                     const Text(
-                      'Pro Business',
+                      'Platinum',
                       style: TextStyle(fontSize: 20.0, color: Colors.white),
                     ),
                     const Text(
-                      'Better Results',
+                      'Go all in',
                       style: TextStyle(fontSize: 10.0, color: Colors.white),
                     ),
                     const ListTile(
@@ -220,7 +220,7 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'All Pro Membership Features',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -230,7 +230,7 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        '24/7 Priority Phone Support',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -240,7 +240,7 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Real-Time Maintenance Tracking',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -250,105 +250,16 @@ class _SubscriptionPlanBillYearlyState
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Access to Beta Features and Exclusive Enhancements',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
                     const SizedBox(
-                      height: 10.0,
+                      height: 30.0,
                     ),
                     const Text(
-                      r'$250/year',
-                      style: TextStyle(fontSize: 24.0, color: Colors.white),
-                    ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    TextButton(
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: const Color(0xFF685BFF),
-                        fixedSize: const Size(150, 40),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'Choose',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 10.0,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.2,
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: Card(
-                color: const Color(0x737473FF).withOpacity(0.3),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    const Text(
-                      'Create your own plan ',
-                      style: TextStyle(fontSize: 20.0, color: Colors.white),
-                    ),
-                    const Text(
-                      'In addition to the date you have chosen ',
-                      style: TextStyle(fontSize: 10.0, color: Colors.white),
-                    ),
-                    const ListTile(
-                      leading: Icon(
-                        Icons.check_circle_outline_outlined,
-                        color: Color(0xFF685BFF),
-                      ),
-                      title: Text(
-                        '2 Months free',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    const ListTile(
-                      leading: Icon(
-                        Icons.check_circle_outline_outlined,
-                        color: Color(0xFF685BFF),
-                      ),
-                      title: Text(
-                        '2 Months',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    const ListTile(
-                      leading: Icon(
-                        Icons.check_circle_outline_outlined,
-                        color: Color(0xFF685BFF),
-                      ),
-                      title: Text(
-                        '2 Months',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    const ListTile(
-                      leading: Icon(
-                        Icons.check_circle_outline_outlined,
-                        color: Color(0xFF685BFF),
-                      ),
-                      title: Text(
-                        '2 Months',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    const Text(
-                      r'$250/year',
-                      style: TextStyle(fontSize: 24.0, color: Colors.white),
+                      r'$399/year',
+                      style: TextStyle(fontSize: 30.0, color: Colors.white),
                     ),
                     const SizedBox(
                       height: 10.0,

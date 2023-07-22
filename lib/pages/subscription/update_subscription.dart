@@ -47,68 +47,33 @@ class UpdateSubscriptionState extends State<UpdateSubscription> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: const Color(0x5F7473FF),
-        appBar: AppBar(
-          backgroundColor: const Color(0xFF2E2E48),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(30),
-              top: Radius.circular(
-                  30), // Dilediğiniz yuvarlaklık oranını belirleyebilirsiniz
+        backgroundColor: const Color(0xFF2E2E48),
+        body: Center(
+          child: Container(
+            alignment: Alignment.centerRight,
+            decoration: const BoxDecoration(
+              color: Color(0x00464667),
             ),
-          ),
-          elevation: 50,
-          title: const Text(
-            "Updating Subscription ",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          centerTitle: true,
-        ),
-        body: Row(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Color(0x00464667),
-                ),
-                child: Row(
-                  children: [Container()],
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Color(0x00464667),
-                ),
-                child: Column(
+            child: Column(
+              children: <Widget>[
+                buildCreditCardWidget(),
+                Column(
                   children: <Widget>[
-                    buildCreditCardWidget(),
+                    SizedBox(
+                      width: 400,
+                      child: buildCreditCardForm(),
+                    ),
                     Column(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 400,
-                          child: buildCreditCardForm(),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        validatePayment(),
-                        Column(
-                          children: [
-                            pickDate(),
-                            updateTheExpireDate(context),
-                          ],
-                        ),
+                      children: [
+                        pickDate(),
+                        updateTheExpireDate(context),
                       ],
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -194,41 +159,6 @@ class UpdateSubscriptionState extends State<UpdateSubscription> {
     );
   }
 
-  SizedBox validatePayment() {
-    return SizedBox(
-      width: 400,
-      child: GestureDetector(
-        onTap: _onValidate,
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: <Color>[
-                Color(0xFF2E2E48),
-                Color(0xFF685BFF),
-                Color(0xFF464667),
-                Color(0xFF3E3E61)
-              ],
-              begin: Alignment(-1, -4),
-              end: Alignment(1, 4),
-            ),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          width: double.infinity,
-          alignment: Alignment.center,
-          child: const Text(
-            'Validate',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   SizedBox pickDate() {
     return SizedBox(
       width: 400,
@@ -290,6 +220,7 @@ class UpdateSubscriptionState extends State<UpdateSubscription> {
         alignment: Alignment.center,
         child: TextButton(
           onPressed: () {
+            _onValidate();
             Navigator.of(context).pop();
             setState(() {});
           },

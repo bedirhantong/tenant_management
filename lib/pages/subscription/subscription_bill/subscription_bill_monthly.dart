@@ -13,7 +13,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.6,
               child: Card(
                 color: const Color(0x737473FF).withOpacity(0.3),
                 child: Column(
@@ -45,7 +45,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Limited Number of Properties',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -55,7 +55,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Standard Lease Management',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -65,9 +65,12 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '2 Months',
+                        'Basic Financial Reporting',
                         style: TextStyle(color: Colors.white),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 40.0,
                     ),
                     const Text(
                       r'$65/month',
@@ -99,7 +102,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.6,
               child: Card(
                 color: const Color(0x737473FF).withOpacity(0.3),
                 child: Column(
@@ -121,7 +124,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '5 Months',
+                        'All Basic Membership Features',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -131,7 +134,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '5 Months',
+                        'Customizable Lease Templates',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -141,7 +144,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '5 Months',
+                        'Priority Email Support',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -151,9 +154,12 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '5 Months',
+                        'Advanced Financial Reporting',
                         style: TextStyle(color: Colors.white),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 10.0,
                     ),
                     const Text(
                       r'$139/month',
@@ -185,7 +191,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.2,
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.6,
               child: Card(
                 color: const Color(0x737473FF).withOpacity(0.3),
                 child: Column(
@@ -207,7 +213,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '8 Months',
+                        'All Pro Membership Features',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -217,7 +223,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '8 Months',
+                        '24/7 Priority Phone Support',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -227,7 +233,7 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '8 Months',
+                        'Portfolio-level Reporting and Analysis',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -237,9 +243,12 @@ class SubscriptionPlanBillMonthly extends StatelessWidget {
                         color: Color(0xFF685BFF),
                       ),
                       title: Text(
-                        '8 Months',
+                        'Dedicated Account Manager',
                         style: TextStyle(color: Colors.white),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 42.0,
                     ),
                     const Text(
                       r'$399/month',

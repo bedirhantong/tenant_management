@@ -494,27 +494,27 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
   void onChanged(MenuItem item, TenantModel tenant) {
     switch (item) {
       case MenuItems.upgrade:
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Account(),
-          ),
-        );
-
         // Navigator.push(
         //   context,
         //   MaterialPageRoute(
-        //     builder: (context) => UpdateSubscription(
-        //       tenant: tenant,
-        //     ),
+        //     builder: (context) => const Account(),
         //   ),
         // );
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Account(
+              tenant: tenant,
+            ),
+          ),
+        );
         // showDialog(
         //   context: context,
         //   builder: (BuildContext context) {
         //     return AlertDialog(
         //       title: const Text('Upgrade the subscription'),
-        //       content: const UpdateSubscription(),
+        //       content: const UpdateSubscription(,),
         //       actions: [
         //         ElevatedButton(
         //           onPressed: () async {
@@ -550,7 +550,6 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
         //       icon: const Icon(Icons.update),
         //     );
         //   },
-        // );
         break;
       case MenuItems.details:
         showDialog(

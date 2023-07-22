@@ -9,7 +9,7 @@ This application is a "Tenant Manager" application used to manage tenants. It al
 * [Contribution](#contribution)
 * [Technologies](#technologies)
 * [Future additions](#future)
-* [Demo](#demo)
+* [Screenshots](#screenshots)
 
 
 
@@ -54,17 +54,16 @@ If you would like to contribute to this project, please follow the steps below:
 This app allows:
 
 - [x] Login and Register
-- [ ] Paid Subscriptions
-- [ ] Payment Methods
+- [x] Paid Subscriptions
+- [x] Payment Methods
 - [ ] Dark and Light Theme
 - [ ] Using Getx package for navigation with animation
 - [ ] Flutter charts for usable details
 
+## Screenshots
 
-## Demo
+![](assets/gifs/login.gif) 
 
-- You can see the demo video by clicking [here](https://youtu.be/wCdAD1sTFFo).
-  
-![](assets/videos/tenants.mp4)
-![](assets/images/screenshots/login.jpg)
-![](assets/images/screenshots/tenants.jpg)
+![](assets/gifs/subscription.gif) 
+
+![](assets/gifs/add_tenant.gif) 

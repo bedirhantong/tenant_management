@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tenant_manager/pages/subscription/payment/payment_methods.dart';
 import 'package:tenant_manager/pages/subscription/subscription_bill/subscription_bill.dart';
 
-class Account extends StatefulWidget {
-  const Account({super.key});
+import '../../model/service_model/tenant_models/tenant_model.dart';
 
+class Account extends StatefulWidget {
+  const Account({super.key, required this.tenant});
+  final TenantModel tenant;
   @override
   State<Account> createState() => _AccountState();
 }
@@ -12,12 +14,14 @@ class Account extends StatefulWidget {
 class _AccountState extends State<Account> {
   late Widget _currentAccountBodyContent;
   bool isSubButtonPressed = true;
+  late TenantModel _tenant;
 
   @override
   void initState() {
-    super.initState();
+    _tenant = widget.tenant;
     // Set the initial body content to Payment class content
-    _currentAccountBodyContent = const SubscriptionBill();
+    _currentAccountBodyContent = SubscriptionBill(tenant: _tenant);
+    super.initState();
   }
 
   @override
@@ -48,26 +52,35 @@ class _AccountState extends State<Account> {
                     onPressed: () {
                       setState(
                         () {
-                          _currentAccountBodyContent = const SubscriptionBill();
+                          _currentAccountBodyContent =
+                              SubscriptionBill(tenant: _tenant);
                           isSubButtonPressed = true;
                         },
                       );
                     },
                     child: const Text(
                       'Subscription',
-                      style: TextStyle(color: Color(0xFF685BFF), fontSize: 16),
+                      style: TextStyle(
+                        color: Color(0xFF685BFF),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   )
                 : TextButton(
                     onPressed: () {
                       setState(() {
-                        _currentAccountBodyContent = const SubscriptionBill();
+                        _currentAccountBodyContent =
+                            SubscriptionBill(tenant: _tenant);
                         isSubButtonPressed = true;
                       });
                     },
                     child: const Text(
                       'Subscription',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
             const SizedBox(
@@ -78,26 +91,37 @@ class _AccountState extends State<Account> {
                     onPressed: () {
                       setState(() {
                         // Update the body content to Payment class content
-                        _currentAccountBodyContent = const PaymentMethods();
+                        _currentAccountBodyContent = PaymentMethods(
+                          tenant: _tenant,
+                        );
                         isSubButtonPressed = false;
                       });
                     },
                     child: const Text(
                       'Payment',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
                     ),
                   )
                 : TextButton(
                     onPressed: () {
                       setState(() {
                         // Update the body content to Subscription class content
-                        _currentAccountBodyContent = const PaymentMethods();
+                        _currentAccountBodyContent = PaymentMethods(
+                          tenant: _tenant,
+                        );
                         isSubButtonPressed = false;
                       });
                     },
                     child: const Text(
                       'Payment',
-                      style: TextStyle(color: Color(0xFF685BFF), fontSize: 16),
+                      style: TextStyle(
+                        color: Color(0xFF685BFF),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
           ],

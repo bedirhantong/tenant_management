@@ -3,9 +3,11 @@ import 'package:tenant_manager/pages/subscription/subscription_bill/subscription
 import 'package:tenant_manager/pages/subscription/subscription_bill/subscription_bill_other.dart';
 import 'package:tenant_manager/pages/subscription/subscription_bill/subscription_bill_yearly.dart';
 
-class SubscriptionBill extends StatefulWidget {
-  const SubscriptionBill({super.key});
+import '../../../model/service_model/tenant_models/tenant_model.dart';
 
+class SubscriptionBill extends StatefulWidget {
+  const SubscriptionBill({super.key, required this.tenant});
+  final TenantModel tenant;
   @override
   State<SubscriptionBill> createState() => _SubscriptionBillState();
 }
@@ -15,9 +17,10 @@ class _SubscriptionBillState extends State<SubscriptionBill> {
   bool isMonthlyButtonPressed = true;
   bool isYearlyButtonPressed = false;
   bool isOtherButtonPressed = false;
-
+  late TenantModel _tenant;
   @override
   void initState() {
+    _tenant = widget.tenant;
     super.initState();
     // Set the initial body content to Payment class content
     _currentBodyContent = const SubscriptionPlanBillMonthly();
@@ -138,7 +141,8 @@ class _SubscriptionBillState extends State<SubscriptionBill> {
                             borderRadius: BorderRadius.circular(0.0))),
                     onPressed: () {
                       setState(() {
-                        _currentBodyContent = const SubscriptionPlanBillOther();
+                        _currentBodyContent =
+                            SubscriptionPlanBillOther(tenant: _tenant);
                         isYearlyButtonPressed = false;
                         isMonthlyButtonPressed = false;
                         isOtherButtonPressed = true;
@@ -157,7 +161,8 @@ class _SubscriptionBillState extends State<SubscriptionBill> {
                             borderRadius: BorderRadius.circular(0.0))),
                     onPressed: () {
                       setState(() {
-                        _currentBodyContent = const SubscriptionPlanBillOther();
+                        _currentBodyContent =
+                            SubscriptionPlanBillOther(tenant: _tenant);
                         isYearlyButtonPressed = false;
                         isMonthlyButtonPressed = false;
                         isOtherButtonPressed = true;
