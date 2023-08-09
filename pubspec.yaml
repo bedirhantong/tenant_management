@@ -38,7 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.5
   anim_search_bar: ^2.0.3
-  dropdown_button2: ^2.3.5
+  dropdown_button2: ^2.2.0
   google_fonts: ^4.0.4
   sidebarx: ^0.16.0
   bs_flutter_datatable: ^1.2.5
@@ -48,8 +48,8 @@ dependencies:
 
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+#  flutter_test:
+#    sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

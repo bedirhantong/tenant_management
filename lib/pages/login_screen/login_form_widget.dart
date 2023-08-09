@@ -56,7 +56,9 @@ class _LoginFormState extends State<LoginForm> {
                   fontSize: 12.0,
                 ),
                 border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF685BFF)),
+                  borderSide: BorderSide(
+                    color: Color(0xFF685BFF),
+                  ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Color(0xFF685BFF)),
@@ -87,7 +89,9 @@ class _LoginFormState extends State<LoginForm> {
                   fontSize: 12.0,
                 ),
                 border: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFF685BFF)),
+                  borderSide: BorderSide(
+                    color: Color(0xFF685BFF),
+                  ),
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Color(0xFF685BFF)),
@@ -173,29 +177,30 @@ class _LoginFormState extends State<LoginForm> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF685BFF),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF685BFF),
+                ),
+                onPressed: () {
+                  showLogIn(TokensService.getToken(email, password));
+                },
+                child: const Align(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.login,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 8.0),
+                      Text(
+                        "LOGIN",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
                   ),
-                  onPressed: () {
-                    showLogIn(TokensService.getToken(email, password));
-                  },
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.login,
-                          color: Colors.white,
-                        ),
-                        SizedBox(width: 8.0),
-                        Text(
-                          "LOGIN",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  )), // Sign in
+                ),
+              ), // Sign in
             ),
             const SizedBox(
               height: 10,

@@ -2,8 +2,8 @@ version: '3.8'
 name: maviarge-tenant-demo-backend-setup
 services:
   dotnet-webapi:
-    image: baranacikgoz/maviarge-tenant-demo-amd64
-    container_name: dotnet-webapi
+    image: baranacikgoz/maviarge-webapi-boilerplate
+    container_name: tenant-demo-dotnet-webapi
     networks:
       - maviarge
     environment:

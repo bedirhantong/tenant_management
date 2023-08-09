@@ -509,47 +509,6 @@ class _FutureDataBuilderState extends State<FutureDataBuilder> {
             ),
           ),
         );
-        // showDialog(
-        //   context: context,
-        //   builder: (BuildContext context) {
-        //     return AlertDialog(
-        //       title: const Text('Upgrade the subscription'),
-        //       content: const UpdateSubscription(,),
-        //       actions: [
-        //         ElevatedButton(
-        //           onPressed: () async {
-        //             DateTime dateNow = DateTime.now();
-        //             final DateTime? selectedDate = await showDatePicker(
-        //               context: context,
-        //               initialDate: dateNow,
-        //               firstDate: dateNow,
-        //               lastDate: DateTime(2030),
-        //             );
-        //             if (selectedDate != null) {
-        //               TenantService.updateTenantSubscription(
-        //                       TokenClass.me.token.toString(),
-        //                       tenant.id.toString(),
-        //                       selectedDate)
-        //                   .then(
-        //                 (v) {
-        //                   tenant.validUpto = selectedDate.toIso8601String();
-        //                 },
-        //               );
-        //             }
-        //           },
-        //           child: const Text("Pick a date"),
-        //         ),
-        //         TextButton(
-        //           onPressed: () {
-        //             Navigator.of(context).pop();
-        //             setState(() {});
-        //           },
-        //           child: const Text('Update the expire date'),
-        //         ),
-        //       ],
-        //       icon: const Icon(Icons.update),
-        //     );
-        //   },
         break;
       case MenuItems.details:
         showDialog(

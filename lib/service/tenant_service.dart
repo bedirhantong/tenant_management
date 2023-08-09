@@ -24,7 +24,8 @@ class TenantService {
             body: jsonEncode(<String, dynamic>{
               "id": tenantId,
               "name": name,
-              "connectionString": "",
+              "connectionString":
+                  "Server=postgres;Port=5432;Database=postgres;Username=postgres;Password=postgres",
               "adminEmail": adminEmail,
               "issuer": issuer
             }),

@@ -7,6 +7,7 @@ import 'package:tenant_manager/model/service_model/tenant_models/tenant_model.da
 import '../manage_tenants/otp_screen_payment.dart';
 import '../../consts/token_class.dart';
 import '../../service/tenant_service.dart';
+import '../manage_tenants/tenants.dart';
 
 class UpdateSubscription extends StatefulWidget {
   const UpdateSubscription({super.key, required this.tenant});
@@ -221,7 +222,13 @@ class UpdateSubscriptionState extends State<UpdateSubscription> {
         child: TextButton(
           onPressed: () {
             _onValidate();
-            Navigator.of(context).pop();
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const Tenants(),
+              ),
+              (route) => false,
+            );
             setState(() {});
           },
           child: const Text(

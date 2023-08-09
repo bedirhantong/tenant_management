@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../login_screen/login_page.dart';
+import 'home.dart';
+
 class Settings extends StatefulWidget {
   const Settings({super.key});
 
@@ -30,7 +33,13 @@ class _SettingsState extends State<Settings> {
         actions: [
           ElevatedButton(
             onPressed: () {
-              setState(() {});
+              setState(() {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                  (route) => false,
+                );
+              });
             },
             child: const Text(
               'Log out',

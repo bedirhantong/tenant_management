@@ -14,12 +14,6 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "boolean_selector",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "bs_flutter_datatable",
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/bs_flutter_datatable-1.2.5",
       "packageUri": "lib/",
@@ -68,12 +62,6 @@
       "languageVersion": "2.17"
     },
     {
-      "name": "fake_async",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "ffi",
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/ffi-2.0.2",
       "packageUri": "lib/",
@@ -102,12 +90,6 @@
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_otp_text_field-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "flutter_test",
-      "rootUri": "file:///C:/src/flutter/packages/flutter_test",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
     },
     {
       "name": "flutter_web_plugins",
@@ -150,12 +132,6 @@
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
-    },
-    {
-      "name": "matcher",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.15",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
     },
     {
       "name": "material_color_utilities",
@@ -242,18 +218,6 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "stack_trace",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.11.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "stream_channel",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
-    },
-    {
       "name": "string_scanner",
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/string_scanner-1.2.0",
       "packageUri": "lib/",
@@ -276,12 +240,6 @@
       "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/term_glyph-1.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "test_api",
-      "rootUri": "file:///C:/Users/cengb/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.5.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
     },
     {
       "name": "typed_data",
@@ -314,7 +272,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-07-20T10:26:41.076153Z",
+  "generated": "2023-08-09T08:55:19.568294Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }
